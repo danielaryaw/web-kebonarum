@@ -27,6 +27,30 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
+## GitHub Pages Deployment
+
+This project is configured to deploy to GitHub Pages.
+
+### Deploy
+
+1. Install dependencies:
+
+```
+npm install
+```
+
+2. Deploy:
+
+```
+npm run deploy
+```
+
+The site will be published at:
+
+```
+https://abetkalinggaw.github.io/web-kebonarum
+```
+
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `npm run eject`
