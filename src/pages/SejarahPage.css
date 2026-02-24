@@ -1,0 +1,277 @@
+.sejarah-page {
+    color: #1a1a1a;
+}
+
+.sejarah-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(140deg, rgba(58, 63, 60, 0.85), rgba(31, 36, 34, 0.9)),
+        url('../assets/gkj-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    color: #ffffff;
+    padding: 6rem 0 4rem;
+}
+
+.sejarah-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sejarah-kicker {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.sejarah-title {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+}
+
+.sejarah-lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 1000px;
+}
+
+.sejarah-section {
+    padding: 4rem 0 5rem;
+}
+
+.sejarah-section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.sejarah-section-title {
+    font-size: 2.4rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #3A3F3C;
+}
+
+.sejarah-timeline {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    grid-template-areas:
+        "year year"
+        "image content";
+    gap: 1.5rem;
+    padding: 1.5rem 2rem;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    align-items: center;
+}
+
+.timeline-year {
+    grid-area: year;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3A3F3C;
+    margin: 0 auto 0.75rem;
+    padding: 0.4rem 1.2rem;
+    border-radius: 999px;
+    background: #e9efe9;
+    width: fit-content;
+    text-align: center;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-image {
+    grid-area: image;
+    width: 220px;
+    height: 140px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.timeline-content {
+    grid-area: content;
+}
+
+.timeline-item--reverse {
+    grid-template-columns: 1fr 220px;
+    grid-template-areas:
+        "year year"
+        "content image";
+}
+
+.timeline-item--reverse .timeline-content {
+    text-align: right;
+}
+
+.timeline-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.timeline-title {
+    margin: 0 0 0.5rem;
+    font-size: 1.3rem;
+    color: #2c2c2c;
+}
+
+.timeline-description {
+    margin: 0;
+    color: #5a5a5a;
+    line-height: 1.7;
+}
+
+.sejarah-highlight {
+    padding: 0 0 5rem;
+}
+
+.sejarah-highlight-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2rem;
+    align-items: start;
+}
+
+.highlight-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    color: #3A3F3C;
+}
+
+.highlight-description {
+    margin: 0;
+    line-height: 1.8;
+    color: #5a5a5a;
+}
+
+.highlight-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 2rem;
+    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
+}
+
+.highlight-card-title {
+    margin: 0 0 1rem;
+    font-size: 1.3rem;
+    color: #3A3F3C;
+}
+
+.highlight-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #5a5a5a;
+    line-height: 1.8;
+}
+
+@media (max-width: 1024px) {
+    .sejarah-hero {
+        padding: 4.5rem 0 3rem;
+    }
+
+    .sejarah-title {
+        font-size: 2.5rem;
+    }
+
+    .sejarah-section-title {
+        font-size: 2.1rem;
+    }
+
+    .sejarah-highlight-inner {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sejarah-hero {
+        min-height: 50vh;
+        padding: 3.5rem 0 2.5rem;
+    }
+
+    .sejarah-hero-content {
+        padding: 0 1.5rem;
+    }
+
+    .sejarah-title {
+        font-size: 2.1rem;
+    }
+
+    .sejarah-lead {
+        font-size: 1rem;
+    }
+
+    .sejarah-section {
+        padding: 3rem 0 4rem;
+    }
+
+    .sejarah-section-inner {
+        padding: 0 1.5rem;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "year"
+            "image"
+            "content";
+        padding: 1.5rem;
+    }
+
+    .timeline-image {
+        width: 100%;
+        height: 220px;
+    }
+
+    .timeline-year {
+        font-size: 1.4rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sejarah-hero {
+        min-height: 45vh;
+        padding: 3rem 0 2rem;
+    }
+
+    .sejarah-hero-content {
+        padding: 0 1rem;
+    }
+
+    .sejarah-title {
+        font-size: 1.7rem;
+    }
+
+    .sejarah-section-title {
+        font-size: 1.8rem;
+    }
+
+    .sejarah-section-inner,
+    .sejarah-highlight-inner {
+        padding: 0 1rem;
+    }
+
+    .timeline-image {
+        height: 200px;
+    }
+
+    .highlight-card {
+        padding: 1.5rem;
+    }
+}

@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Clash Display local fonts (woff) */
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Extralight.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Extralight.woff') format('woff');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Light.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Regular.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Medium.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Semibold.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Semibold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'ClashDisplay';
+  src: url('./assets/fonts/clash-display/ClashDisplay-Bold.woff2') format('woff2'),
+       url('./assets/fonts/clash-display/ClashDisplay-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+/* DESIGN TOKENS */
+
+:root {
+  /* Font Families */
+  --font-heading: 'ClashDisplay', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Weights */
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Line Heights */
+  --lh-tight: 1.1;
+  --lh-heading: 1.2;
+  --lh-body: 1.6;
+
+  /* Colors */
+  --color-text-primary: #111111;
+  --color-text-secondary: #555555;
+  --color-text-muted: #777777;
+}
+
+
+/* GLOBAL RESET */
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: var(--weight-regular);
+  line-height: var(--lh-body);
+  color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* HEADINGS — CLASH DISPLAY */
+
+h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-tight);
+  letter-spacing: -0.03em;
+  margin: 0 0 24px;
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(30px, 4vw, 44px);
+  font-weight: var(--weight-bold);
+  line-height: var(--lh-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 20px;
+}
+
+h3 {
+  font-family: var(--font-heading);
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: var(--weight-semibold);
+  line-height: var(--lh-heading);
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+}
+
+h4 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: var(--weight-semibold);
+  line-height: 1.3;
+  margin: 0 0 14px;
+}
+
+h5 {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+
+h6 {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  margin: 0 0 10px;
+}
+
+
+/* Lead / Large paragraph */
+.text-lg {
+  font-size: 18px;
+  line-height: var(--lh-body);
+}
+
+/* Small text */
+.text-sm {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Caption */
+.caption {
+  font-size: 12px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+}
+
+.running-text-span {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-semibold);
+}
+
+/* LINKS */
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+  text-transform: uppercase;
+}

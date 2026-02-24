@@ -1,0 +1,74 @@
+.landing-page {
+  background-color: #000000;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.video-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border: none;
+  object-fit: cover;
+}
+
+.video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 2;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  color: white;
+  animation: fadeIn 2s ease-in;
+}
+
+.welcome-title {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.welcome-image {
+  max-width: 90vw;
+  width: 1200px;
+  height: auto;
+  display: block;
+  animation: fadeIn 2s ease-in;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .landing-page {
+    height: 768px;
+  }
+}

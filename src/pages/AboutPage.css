@@ -1,0 +1,173 @@
+.about-page {
+    color: #1a1a1a;
+}
+
+.about-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(140deg, rgba(58, 63, 60, 0.85), rgba(31, 36, 34, 0.9)),
+        url('../assets/gkj-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    color: #ffffff;
+    padding: 6rem 0 4rem;
+}
+
+.about-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.about-kicker {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.about-title {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+}
+
+.about-lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 1000px;
+}
+
+.about-section {
+    padding: 4rem 0;
+}
+
+.about-video-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 2.5rem;
+    color: #3A3F3C;
+}
+
+.about-video {
+    padding: 2rem 0 4.5rem;
+    background: linear-gradient(180deg, rgba(247, 247, 247, 0.95), #ffffff 60%);
+}
+
+.about-video-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    position: relative;
+}
+
+.about-video-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    height: auto;
+    border-radius: 20px;
+    border: none;
+    box-shadow: 0 24px 55px rgba(0, 0, 0, 0.18);
+    background: #0f0f0f;
+}
+
+
+@media (max-width: 1024px) {
+    .about-hero {
+        padding: 4rem 0 2.5rem;
+    }
+
+    .about-title {
+        font-size: 2.5rem;
+    }
+
+    .about-video-title {
+        font-size: 2.2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-section {
+        padding: 2.5rem 0;
+    }
+
+    .about-hero {
+        min-height: 50vh;
+        padding: 3rem 0 2rem;
+    }
+
+    .about-hero-content {
+        padding: 0 1.5rem;
+    }
+
+    .about-kicker {
+        font-size: 0.8rem;
+        letter-spacing: 2px;
+    }
+
+    .about-title {
+        font-size: 2rem;
+    }
+
+    .about-lead {
+        font-size: 1rem;
+    }
+
+    .about-video-title {
+        font-size: 1.9rem;
+        margin-bottom: 2rem;
+    }
+
+    .about-video {
+        padding: 1.5rem 0 3rem;
+    }
+
+    .about-video-inner {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-hero {
+        min-height: 45vh;
+        padding: 2.5rem 0 1.5rem;
+    }
+
+    .about-hero-content {
+        padding: 0 1rem;
+    }
+
+    .about-kicker {
+        font-size: 0.75rem;
+    }
+
+    .about-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .about-lead {
+        font-size: 0.95rem;
+    }
+
+    .about-video-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+        margin-top: 1rem;
+    }
+
+    .about-video {
+        padding: 1rem 0 2rem;
+    }
+
+    .about-video-inner {
+        padding: 0 1rem;
+    }
+
+}

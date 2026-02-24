@@ -1,0 +1,125 @@
+.kebonarum-info-section {
+  width: 100%;
+  height: 550px;
+  background-image: url('../../assets/salib-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.kebonarum-info-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 0;
+}
+
+.kebonarum-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+.info-content {
+  text-align: center;
+}
+
+.info-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: white;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+  position: relative;
+  display: inline-block;
+}
+
+
+.info-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+  line-height: 1.8;
+  letter-spacing: 0.3px;
+}
+
+.view-all-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .kebonarum-info-section {
+    height: 550px;
+  }
+
+  .kebonarum-container {
+    padding: 0 1.5rem;
+  }
+
+  .info-title {
+    font-size: 2.3rem;
+  }
+
+  .info-description {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .kebonarum-info-section {
+    height: 550px;
+    padding: 3rem 0;
+  }
+
+  .kebonarum-container {
+    padding: 0 1rem;
+  }
+
+  .info-title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .info-title::after {
+    width: 80px;
+    margin: 0.75rem auto 0;
+  }
+
+  .info-description {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .kebonarum-info-section {
+    padding: 2.5rem 0;
+  }
+
+  .kebonarum-container {
+    padding: 0 1rem;
+  }
+
+  .info-title {
+    font-size: 1.7rem;
+  }
+
+  .info-description {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+}

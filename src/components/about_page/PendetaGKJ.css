@@ -1,0 +1,147 @@
+.pendeta-gkj-kebonarum {
+    padding: 4rem 0 5rem;
+    background: #f7f7f7;
+}
+
+.pendeta-gkj-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.pendeta-gkj-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    letter-spacing: 1px;
+    color: #3A3F3C;
+}
+
+.pendeta-gkj-description {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555555;
+    max-width: 1000px;
+    margin: 0 auto 3rem;
+    
+}
+
+.pendeta-gkj-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.pendeta-gkj-card {
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.pendeta-gkj-image {
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+}
+
+.pendeta-gkj-info {
+    width: 100%;
+    height: 180px;
+    margin: 20px 20px;
+    padding: 1.25rem 1.5rem;
+    background: #344e41db;
+    color: #ffffff;
+    border-radius: 20px;
+}
+
+.pendeta-gkj-name {
+    margin: 0 0 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.pendeta-gkj-subtitle {
+    margin: 0;
+    font-size: 0.9rem;
+    opacity: 0.95;
+}
+
+@media (max-width: 1024px) {
+    .pendeta-gkj-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 1rem;
+    }
+    .pendeta-gkj-info{
+        height: 160px;
+    }
+}
+
+@media (max-width: 768px) {
+    .pendeta-gkj-container {
+        padding: 3rem 1rem;
+    }
+
+    .pendeta-gkj-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .pendeta-gkj-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 2rem;
+    }
+
+    .pendeta-gkj-card {
+        height: 460px;
+    }
+
+    .pendeta-gkj-info{
+        margin-bottom: 60px;
+        height: 160px;
+    }
+
+    .pendeta-gkj-name {
+        font-size: 1.4rem;
+    }
+
+    .pendeta-gkj-subtitle {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .pendeta-gkj-container {
+        padding: 2rem 1rem;
+    }
+
+    .pendeta-gkj-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .pendeta-gkj-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .pendeta-gkj-card {
+        height: 500px;
+    }
+
+    .pendeta-gkj-info{
+        margin-bottom: 20px;
+        height: 140px;
+    }
+
+    .pendeta-gkj-name {
+        font-size: 1.1rem;
+    }
+
+    .pendeta-gkj-subtitle {
+        font-size: 0.8rem;
+    }
+}

@@ -1,0 +1,267 @@
+.gereja-list-page {
+    color: #1a1a1a;
+}
+
+.gereja-list-hero {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    background:
+        linear-gradient(140deg, rgba(58, 63, 60, 0.85), rgba(31, 36, 34, 0.9)),
+        url('../assets/gkj-bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: scroll;
+    color: #ffffff;
+    padding: 6rem 0 4rem;
+}
+
+.gereja-list-hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.gereja-list-kicker {
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.gereja-list-title {
+    font-size: 3rem;
+    margin: 0 0 1rem;
+}
+
+.gereja-list-lead {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin: 0;
+    max-width: 1000px;
+}
+
+.gereja-list-section {
+    margin-top: 40px;
+    padding: 4rem 0 5rem;
+}
+
+.gereja-list-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.gereja-list-grid {
+    display: grid;
+    gap: 3rem;
+}
+
+.gereja-item {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 2rem;
+    align-items: center;
+    overflow: hidden;
+}
+
+.gereja-item-image {
+    width: 100%;
+    height: 450px;
+    overflow: hidden;
+    background: #f0f0f0;
+}
+
+.gereja-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.gereja-item-content {
+    padding: 1.4rem;
+}
+
+.gereja-item-title {
+    margin: 0 0 1.5rem;
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+}
+
+.gereja-item-address {
+    margin: 0 0 1.5rem;
+    font-size: 0.95rem;
+    color: #5a5a5a;
+    line-height: 1.7;
+}
+
+.gereja-item-schedule {
+    margin-top: 1.5rem;
+}
+
+.schedule-label {
+    margin: 0 0 0.75rem;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #3A3F3C;
+    text-transform: capitalize;
+}
+
+.schedule-list {
+    margin: 0;
+    padding-left: 1.2rem;
+    color: #5a5a5a;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.gereja-item--reverse {
+    grid-template-columns: 1.2fr 1fr;
+}
+
+.gereja-item--reverse .gereja-item-image {
+    order: 2;
+}
+
+.gereja-item--reverse .gereja-item-content {
+    order: 1;
+}
+
+@media (max-width: 1024px) {
+    .gereja-list-hero {
+        padding: 4rem 0 2.5rem;
+    }
+
+    .gereja-list-title {
+        font-size: 2.5rem;
+    }
+
+    .gereja-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .gereja-item--reverse {
+        grid-template-columns: 1fr;
+    }
+
+    .gereja-item-image {
+        order: 0;
+    }
+
+    .gereja-item-content {
+        order: 1;
+        padding: 1.5rem;
+    }
+
+    .gereja-item--reverse .gereja-item-image {
+        order: 0;
+    }
+
+    .gereja-item--reverse .gereja-item-content {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .gereja-list-hero {
+        min-height: 50vh;
+        padding: 3rem 0 2rem;
+    }
+
+    .gereja-list-hero-content {
+        padding: 0 1.5rem;
+    }
+
+    .gereja-list-title {
+        font-size: 2.1rem;
+    }
+
+    .gereja-list-lead {
+        font-size: 1rem;
+    }
+
+    .gereja-list-section {
+        padding: 3rem 0 4rem;
+    }
+
+    .gereja-list-inner {
+        padding: 0 1.5rem;
+    }
+
+    .gereja-item {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .gereja-item-image {
+        height: 240px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .gereja-item-content {
+        padding: 1.5rem;
+    }
+
+    .gereja-item-title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .gereja-item-address {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gereja-list-hero {
+        min-height: 45vh;
+        padding: 2.5rem 0 1.5rem;
+    }
+
+    .gereja-list-hero-content {
+        padding: 0 1rem;
+    }
+
+    .gereja-list-title {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .gereja-list-lead {
+        font-size: 0.95rem;
+    }
+
+    .gereja-list-inner {
+        padding: 0 1rem;
+    }
+
+    .gereja-list-grid {
+        gap: 2rem;
+    }
+
+    .gereja-item-content {
+        padding: 1.25rem;
+    }
+
+    .gereja-item-title {
+        font-size: 1.3rem;
+    }
+
+    .gereja-item-address {
+        font-size: 0.85rem;
+    }
+
+    .schedule-label {
+        font-size: 0.85rem;
+    }
+
+    .schedule-list {
+        font-size: 0.85rem;
+    }
+}
