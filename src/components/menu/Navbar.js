@@ -56,8 +56,19 @@ const Navbar = () => {
             <li>
               <a href="/gereja">Gereja</a>
             </li>
-            <li>
+            <li className="navbar-dropdown-parent">
               <a href="/media">Media</a>
+              <ul className="navbar-dropdown">
+                <li>
+                  <a href="/youtube">YouTube</a>
+                </li>
+                <li>
+                  <a href="/instagram">Instagram</a>
+                </li>
+                <li>
+                  <a href="/documentation">Documentation</a>
+                </li>
+              </ul>
             </li>
             <li>
               <a href="/pengumuman">Pengumuman</a>

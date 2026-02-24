@@ -13,7 +13,11 @@ const AboutPage = () => {
         <section className="about-hero">
           <div className="about-hero-content">
             <p className="about-kicker">GKJ Kebonarum Klaten</p>
-            <h1 className="about-title">Tentang GKJ Kebonarum</h1>
+            <h1 className="about-title">
+              Tentang
+              <br />
+              GKJ Kebonarum
+            </h1>
             <p className="about-lead">
               GKJ Kebonarum adalah gereja yang melayani jemaat dan masyarakat
               dengan kasih, pengajaran firman, dan pelayanan yang berdampak.

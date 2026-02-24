@@ -5,6 +5,9 @@ import AboutPage from "./pages/AboutPage";
 import SejarahPage from "./pages/SejarahPage";
 import GerejaListPage from "./pages/GerejaListPage";
 import MajelisListPage from "./pages/MajelisListPage";
+import YoutubePage from "./pages/media/YoutubePage";
+import InstagramPage from "./pages/media/InstagramPage";
+import DocumentationPage from "./pages/media/DocumentationPage";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
           <Route path="/sejarah" element={<SejarahPage />} />
           <Route path="/gereja" element={<GerejaListPage />} />
           <Route path="/majelis" element={<MajelisListPage />} />
+          <Route path="/youtube" element={<YoutubePage />} />
+          <Route path="/instagram" element={<InstagramPage />} />
+          <Route path="/documentation" element={<DocumentationPage />} />
         </Routes>
       </div>
     </BrowserRouter>

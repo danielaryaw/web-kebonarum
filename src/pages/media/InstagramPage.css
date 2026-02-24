@@ -1,0 +1,138 @@
+.instagram-page {
+  color: #1a1a1a;
+}
+
+.instagram-hero {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(140deg, rgba(58, 63, 60, 0.85), rgba(31, 36, 34, 0.9)),
+    url("../../assets/gkj-bg.png");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+  padding: 6rem 0 3rem;
+}
+
+.instagram-hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.instagram-kicker {
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.instagram-title {
+  font-size: 3rem;
+  margin: 0 0 1rem;
+}
+
+.instagram-lead {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin: 0 0 1rem;
+  max-width: 1000px;
+}
+
+.instagram-account-link {
+  display: inline-block;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 999px;
+  text-decoration: none;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.instagram-account-link:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.instagram-section {
+  padding: 3.5rem 0;
+}
+
+.instagram-section-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.instagram-section-title {
+  font-size: 2rem;
+  margin: 0 0 1.5rem;
+  color: #3a3f3c;
+}
+
+.instagram-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.instagram-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+  padding: 0.75rem;
+}
+
+.instagram-card .instagram-media {
+  min-width: 100% !important;
+  width: 100% !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .instagram-title {
+    font-size: 2.4rem;
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .instagram-hero {
+    min-height: 40vh;
+    padding: 4.5rem 0 2.5rem;
+  }
+
+  .instagram-hero-content,
+  .instagram-section-inner {
+    padding: 0 1.5rem;
+  }
+
+  .instagram-title {
+    font-size: 2rem;
+  }
+
+  .instagram-section-title {
+    font-size: 1.6rem;
+  }
+
+  .instagram-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .instagram-hero-content,
+  .instagram-section-inner {
+    padding: 0 1rem;
+  }
+
+  .instagram-title {
+    font-size: 1.7rem;
+  }
+}

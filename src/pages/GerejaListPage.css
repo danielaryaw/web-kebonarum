@@ -94,7 +94,7 @@
 
 .gereja-item-address {
     margin: 0 0 1.5rem;
-    font-size: 0.95rem;
+    font-size: 1rem;
     color: #5a5a5a;
     line-height: 1.7;
 }
@@ -106,16 +106,17 @@
 .schedule-label {
     margin: 0 0 0.75rem;
     font-size: 1.4rem;
-    font-weight: 700;
     color: #3A3F3C;
     text-transform: capitalize;
+    text-decoration: underline;
 }
 
 .schedule-list {
     margin: 0;
-    padding-left: 1.2rem;
+    padding-left: 0;
+    list-style: none;
     color: #5a5a5a;
-    font-size: 0.9rem;
+    font-size: 1rem;
     line-height: 1.8;
 }
 

@@ -15,9 +15,9 @@ const GerejaListPage = () => {
       address:
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
       schedule: [
-        "06.00 - Bahasa Indonesia",
-        "08.00 - Bahasa Jawa",
-        "17.00 - Bahasa Indonesia",
+        "06.00 WIB - Bahasa Indonesia",
+        "08.00 WIB - Bahasa Jawa",
+        "17.00 WIB - Bahasa Indonesia",
       ],
       ibadahLabel: "Jadwal Ibadah",
       image: sejarah1,
@@ -27,7 +27,7 @@ const GerejaListPage = () => {
       name: "KROSOK",
       address:
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
-      schedule: ["07.00"],
+      schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
       image: sejarah2,
     },
@@ -36,7 +36,7 @@ const GerejaListPage = () => {
       name: "PLUNENG",
       address:
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
-      schedule: ["07.00"],
+      schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
       image: sejarah3,
     },
@@ -45,7 +45,7 @@ const GerejaListPage = () => {
       name: "NGRUNDUL",
       address:
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
-      schedule: ["07.00"],
+      schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
       image: sejarah4,
     },
@@ -54,7 +54,7 @@ const GerejaListPage = () => {
       name: "PRAYAN",
       address:
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
-      schedule: ["07.00"],
+      schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
       image: sejarah5,
     },
@@ -67,7 +67,11 @@ const GerejaListPage = () => {
         <section className="gereja-list-hero">
           <div className="gereja-list-hero-content">
             <p className="gereja-list-kicker">GKJ Kebonarum Klaten</p>
-            <h1 className="gereja-list-title">Daftar Gereja</h1>
+            <h1 className="gereja-list-title">
+              Daftar Gereja
+              <br />
+              GKJ Kebonarum
+            </h1>
             <p className="gereja-list-lead">
               GKJ Kebonarum memiliki beberapa gereja yang tersebar di wilayah
               Klaten, melayani jemaat dengan kasih dan pengajaran firman yang
@@ -92,7 +96,7 @@ const GerejaListPage = () => {
                     <div className="gereja-item-details">
                       <p className="gereja-item-address">{gereja.address}</p>
                       <div className="gereja-item-schedule">
-                        <p className="schedule-label">{gereja.ibadahLabel}</p>
+                        <h4 className="schedule-label">{gereja.ibadahLabel}</h4>
                         <ul className="schedule-list">
                           {gereja.schedule.map((jadwal, idx) => (
                             <li key={idx}>{jadwal}</li>

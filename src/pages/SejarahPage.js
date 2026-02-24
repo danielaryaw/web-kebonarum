@@ -53,7 +53,11 @@ const SejarahPage = () => {
         <section className="sejarah-hero">
           <div className="sejarah-hero-content">
             <p className="sejarah-kicker">GKJ Kebonarum Klaten</p>
-            <h1 className="sejarah-title">Sejarah GKJ Kebonarum</h1>
+            <h1 className="sejarah-title">
+              Sejarah
+              <br />
+              GKJ Kebonarum
+            </h1>
             <p className="sejarah-lead">
               Perjalanan iman GKJ Kebonarum dibangun melalui kesetiaan jemaat
               dalam pelayanan, persekutuan, dan kesaksian di tengah masyarakat.

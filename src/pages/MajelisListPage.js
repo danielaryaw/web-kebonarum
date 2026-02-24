@@ -276,7 +276,11 @@ const MajelisListPage = () => {
               Kembali
             </button>
             <p className="majelis-list-kicker">GKJ Kebonarum</p>
-            <h1 className="majelis-list-title">Majelis Jemaat</h1>
+            <h1 className="majelis-list-title">
+              Majelis Jemaat
+              <br />
+              GKJ Kebonarum
+            </h1>
             <p className="majelis-list-lead">
               Majelis Jemaat GKJ Kebonarum yang terdiri dari para Penatua dan
               Diaken yang berdedikasi melayani dan memimpin jemaat dalam kasih.

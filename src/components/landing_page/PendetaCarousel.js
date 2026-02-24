@@ -5,13 +5,13 @@ import pendeta2 from "../../assets/pdt/pendeta2.jpeg";
 
 const PendetaCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 640);
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768);
+      setIsMobile(window.innerWidth <= 640);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
