@@ -19,9 +19,9 @@ function App() {
           <Route path="/sejarah" element={<SejarahPage />} />
           <Route path="/gereja" element={<GerejaListPage />} />
           <Route path="/majelis" element={<MajelisListPage />} />
-          <Route path="/youtube" element={<YoutubePage />} />
-          <Route path="/instagram" element={<InstagramPage />} />
-          <Route path="/documentation" element={<DocumentationPage />} />
+          <Route path="/media/youtube" element={<YoutubePage />} />
+          <Route path="/media/instagram" element={<InstagramPage />} />
+          <Route path="/media/documentation" element={<DocumentationPage />} />
         </Routes>
       </div>
     </BrowserRouter>

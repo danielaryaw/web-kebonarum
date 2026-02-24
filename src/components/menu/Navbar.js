@@ -58,24 +58,43 @@ const Navbar = () => {
               <Link to="/gereja">Gereja</Link>
             </li>
             <li className="navbar-dropdown-parent">
-              <span>Media</span>
+              <Link to="/media">Media</Link>
               <ul className="navbar-dropdown">
                 <li>
-                  <Link to="/youtube">YouTube</Link>
+                  <Link to="/media/youtube">YouTube</Link>
                 </li>
                 <li>
-                  <Link to="/instagram">Instagram</Link>
+                  <Link to="/media/instagram">Instagram</Link>
                 </li>
                 <li>
-                  <Link to="/documentation">Documentation</Link>
+                  <Link to="/media/documentation">Documentation</Link>
                 </li>
               </ul>
             </li>
-            <li>
+            <li className="navbar-dropdown-parent">
               <Link to="/pengumuman">Pengumuman</Link>
+              <ul className="navbar-dropdown">
+                <li>
+                  <Link to="/pengumuman/event">Event</Link>
+                </li>
+                <li>
+                  <Link to="/pengumuman/warta-gereja">Warta Gereja</Link>
+                </li>
+              </ul>
             </li>
-            <li>
+            <li className="navbar-dropdown-parent">
               <Link to="/komisi">Komisi</Link>
+              <ul className="navbar-dropdown">
+                <li>
+                  <Link to="/komisi/pwg">PWG & Ibadah</Link>
+                </li>
+                <li>
+                  <Link to="/komisi/diaken">Diaken</Link>
+                </li>
+                <li>
+                  <Link to="/komisi/Penatalayanan">Penatalayanan</Link>
+                </li>
+              </ul>
             </li>
             <li>
               <Link to="/statistik">Statistik</Link>
