@@ -98,7 +98,6 @@
 }
 
 .gallery-item:hover {
-  transform: translateY(-4px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
@@ -221,34 +220,6 @@
 
 .gallery-modal-close:hover {
   transform: scale(1.1);
-}
-
-/* Error State */
-.gallery-error {
-  text-align: center;
-  padding: 6rem 2rem;
-}
-
-.gallery-error h2 {
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: var(--color-text-900);
-}
-
-.gallery-error button {
-  padding: 0.75rem 2rem;
-  background: var(--color-brand-900);
-  color: var(--color-white);
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: background 0.2s ease;
-}
-
-.gallery-error button:hover {
-  background: var(--color-brand-700);
 }
 
 /* Tablet Devices */

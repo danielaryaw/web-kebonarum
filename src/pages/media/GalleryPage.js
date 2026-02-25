@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import "./GalleryPage.css";
 import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
+import GalleryError from "../../components/media/GalleryError";
 import {
   getDocumentationImagesById,
   getDocumentationItemById,
@@ -275,16 +276,9 @@ const GalleryPage = () => {
   if (!item && !isLoadingItem) {
     return (
       <>
-        <Navbar />
         <main className="gallery-page">
-          <div className="gallery-error">
-            <h2>Dokumentasi tidak ditemukan</h2>
-            <button onClick={() => navigate("/media/documentation")}>
-              Kembali ke Dokumentasi
-            </button>
-          </div>
+          <GalleryError onBack={() => navigate("/media/documentation")} />
         </main>
-        <Footer />
       </>
     );
   }
@@ -356,9 +350,7 @@ const GalleryPage = () => {
                         src={image}
                         alt={`${item?.title || "Dokumentasi"} - ${index + 1}`}
                       />
-                      <div className="gallery-item-overlay">
-                        <span className="gallery-item-icon">🔍</span>
-                      </div>
+                      <div className="gallery-item-overlay"></div>
                     </div>
                   ))}
                   {isLoadingMoreImages && <GallerySkeleton count={4} />}
@@ -380,7 +372,6 @@ const GalleryPage = () => {
         </section>
       </main>
       <Footer />
-
       {selectedImage && (
         <div className="gallery-modal" onClick={closeModal}>
           <div className="gallery-modal-content">

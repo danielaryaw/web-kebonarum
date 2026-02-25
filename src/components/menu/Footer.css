@@ -2,6 +2,7 @@
   background-color: var(--color-brand-800);
   color: var(--color-surface-soft);
   padding: 40px 20px 20px 20px;
+  margin-top: auto;
 }
 
 .footer-container {
