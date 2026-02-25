@@ -54,7 +54,6 @@
   animation: fadeIn 2s ease-in;
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;

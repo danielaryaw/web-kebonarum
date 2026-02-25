@@ -1,50 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
 
 /* Clash Display local fonts (woff) */
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Extralight.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Extralight.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Extralight.woff2")
+      format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Extralight.woff")
+      format("woff");
   font-weight: 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Light.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Light.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Light.woff2") format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Light.woff") format("woff");
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Regular.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Regular.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Regular.woff2")
+      format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Regular.woff") format("woff");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Medium.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Medium.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Medium.woff2")
+      format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Medium.woff") format("woff");
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Semibold.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Semibold.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Semibold.woff2")
+      format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Semibold.woff")
+      format("woff");
   font-weight: 600;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'ClashDisplay';
-  src: url('./assets/fonts/clash-display/ClashDisplay-Bold.woff2') format('woff2'),
-       url('./assets/fonts/clash-display/ClashDisplay-Bold.woff') format('woff');
+  font-family: "ClashDisplay";
+  src:
+    url("./assets/fonts/clash-display/ClashDisplay-Bold.woff2") format("woff2"),
+    url("./assets/fonts/clash-display/ClashDisplay-Bold.woff") format("woff");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -56,13 +68,13 @@
   box-sizing: border-box;
 }
 
-
 /* DESIGN TOKENS */
 
 :root {
   /* Font Families */
-  --font-heading: 'ClashDisplay', sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: "ClashDisplay", sans-serif;
+  --font-body:
+    "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
   /* Weights */
   --weight-regular: 400;
@@ -75,12 +87,29 @@
   --lh-heading: 1.2;
   --lh-body: 1.6;
 
+  /* Layout */
+  --container-pad-desktop: 2rem;
+  --container-pad-tablet: 1.5rem;
+  --container-pad-mobile: 1rem;
+
   /* Colors */
   --color-text-primary: #111111;
   --color-text-secondary: #555555;
   --color-text-muted: #777777;
+  --color-white: #ffffff;
+  --color-text-900: #1a1a1a;
+  --color-text-600: #5a5a5a;
+  --color-text-500: #888888;
+  --color-brand-900: #3a3f3c;
+  --color-brand-800: #344e41;
+  --color-brand-overlay: #344e41db;
+  --color-surface-muted: #f7f7f7;
+  --color-surface-subtle: #f5f7f5;
+  --color-surface-soft: #f0f0f0;
+  --color-neutral-300: #d9d9d9;
+  --color-border-default: #dddddd;
+  --color-border-subtle: #eeeeee;
 }
-
 
 /* GLOBAL RESET */
 
@@ -94,7 +123,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 
 /* HEADINGS — CLASH DISPLAY */
 
@@ -149,7 +177,6 @@ h6 {
   margin: 0 0 10px;
 }
 
-
 /* Lead / Large paragraph */
 .text-lg {
   font-size: 18px;
@@ -175,7 +202,6 @@ h6 {
   font-family: var(--font-heading);
   font-weight: var(--weight-semibold);
 }
-
 
 /* LINKS */
 

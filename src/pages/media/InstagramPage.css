@@ -1,5 +1,5 @@
 .instagram-page {
-  color: #1a1a1a;
+  color: var(--color-text-900);
 }
 
 .instagram-hero {
@@ -11,14 +11,14 @@
     url("../../assets/gkj-bg.png");
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: var(--color-white);
   padding: 6rem 0 3rem;
 }
 
 .instagram-hero-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .instagram-kicker {
@@ -43,7 +43,7 @@
 
 .instagram-account-link {
   display: inline-block;
-  color: #ffffff;
+  color: var(--color-white);
   border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
   text-decoration: none;
@@ -63,13 +63,13 @@
 .instagram-section-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .instagram-section-title {
   font-size: 2rem;
   margin: 0 0 1.5rem;
-  color: #3a3f3c;
+  color: var(--color-brand-900);
 }
 
 .instagram-grid {
@@ -79,7 +79,7 @@
 }
 
 .instagram-card {
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
@@ -110,7 +110,7 @@
 
   .instagram-hero-content,
   .instagram-section-inner {
-    padding: 0 1.5rem;
+    padding: 0 var(--container-pad-tablet);
   }
 
   .instagram-title {
@@ -129,7 +129,7 @@
 @media (max-width: 480px) {
   .instagram-hero-content,
   .instagram-section-inner {
-    padding: 0 1rem;
+    padding: 0 var(--container-pad-mobile);
   }
 
   .instagram-title {

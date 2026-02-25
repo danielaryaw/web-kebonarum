@@ -1,225 +1,229 @@
 .majelis-gkj-kebonarum {
-    padding: 5rem 0;
-    background: linear-gradient(180deg, #ffffff 0%, #f7f7f7 100%);
+  padding: 5rem 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-white) 0%,
+    var(--color-surface-muted) 100%
+  );
 }
 
 .majelis-gkj-container {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .majelis-gkj-title {
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    color: #3A3F3C;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--color-brand-900);
 }
 
 .majelis-gkj-description {
-    text-align: center;
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #555555;
-    max-width: 1000px;
-    margin: 0 auto 3rem;
+  text-align: center;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text-secondary);
+  max-width: 1000px;
+  margin: 0 auto 3rem;
 }
 
 .majelis-gkj-section {
-    margin-bottom: 4rem;
+  margin-bottom: 4rem;
 }
 
 .majelis-gkj-subtitle {
-    text-align: left;
-    font-size: 2rem;
-    font-weight: 700;
-    color: #3A3F3C;
-    letter-spacing: 0.5px;
+  text-align: left;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-brand-900);
+  letter-spacing: 0.5px;
 }
 
 .majelis-gkj-sub-description {
-    margin: 0 0 2.5rem;
-    font-size: 1rem;
-    line-height: 1.8;
-    color: #5a5a5a;
-    text-align: justify;
+  margin: 0 0 2.5rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--color-text-600);
+  text-align: justify;
 }
 
 .majelis-gkj-grid {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 1rem;
-    margin-top: 3rem;
-    margin-left: auto;
-    margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 3rem;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .majelis-gkj-card {
-    text-align: center;
+  text-align: center;
 }
 
 .majelis-gkj-image {
-    width: 100%;
-    height: 250px;
-    aspect-ratio: 1;
-    background-size: cover;
-    background-position: center;
-    border-radius: 12px;
-    margin-bottom: 1rem;
+  width: 100%;
+  height: 250px;
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  margin-bottom: 1rem;
 }
 
 .majelis-gkj-info {
-    padding: 0 0.5rem;
+  padding: 0 0.5rem;
 }
 
 .majelis-gkj-name {
-    margin: 0 0 0.5rem;
-    font-size: 1rem;
-    font-weight: 700;
-    color: #3A3F3C;
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-brand-900);
 }
 
 .majelis-gkj-role {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #888888;
-    font-weight: 500;
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-text-500);
+  font-weight: 500;
 }
 
 @media (max-width: 1024px) {
-    .majelis-gkj-kebonarum {
-        padding: 4rem 0;
-    }
+  .majelis-gkj-kebonarum {
+    padding: 4rem 0;
+  }
 
-    .majelis-gkj-title {
-        font-size: 2.2rem;
-    }
+  .majelis-gkj-title {
+    font-size: 2.2rem;
+  }
 
-    .majelis-gkj-description {
-        font-size: 1.05rem;
-    }
+  .majelis-gkj-description {
+    font-size: 1.05rem;
+  }
 
-    .majelis-gkj-subtitle {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-    }
+  .majelis-gkj-subtitle {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
 
-    .majelis-gkj-sub-description {
-        font-size: 0.98rem;
-        margin-bottom: 2rem;
-    }
+  .majelis-gkj-sub-description {
+    font-size: 0.98rem;
+    margin-bottom: 2rem;
+  }
 
-    .majelis-gkj-image {
-        height: 340px;
-    }
+  .majelis-gkj-image {
+    height: 340px;
+  }
 
-    .majelis-gkj-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 1.5rem;
-    }
+  .majelis-gkj-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .majelis-gkj-kebonarum {
-        padding: 3rem 0;
-    }
+  .majelis-gkj-kebonarum {
+    padding: 3rem 0;
+  }
 
-    .majelis-gkj-container {
-        padding: 0 1.5rem;
-    }
+  .majelis-gkj-container {
+    padding: 0 var(--container-pad-tablet);
+  }
 
-    .majelis-gkj-title {
-        font-size: 2rem;
-        margin-bottom: 1.5rem;
-    }
+  .majelis-gkj-title {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
 
-    .majelis-gkj-description {
-        font-size: 1rem;
-        margin-bottom: 2rem;
-    }
+  .majelis-gkj-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
 
-    .majelis-gkj-section {
-        margin-bottom: 3rem;
-    }
+  .majelis-gkj-section {
+    margin-bottom: 3rem;
+  }
 
-    .majelis-gkj-subtitle {
-        font-size: 1.6rem;
-        margin-bottom: 1.5rem;
-    }
+  .majelis-gkj-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 1.5rem;
+  }
 
-    .majelis-gkj-sub-description {
-        font-size: 0.95rem;
-        margin-bottom: 1.75rem;
-    }
+  .majelis-gkj-sub-description {
+    font-size: 0.95rem;
+    margin-bottom: 1.75rem;
+  }
 
-    .majelis-gkj-image {
-        height: 400px;
-    }
+  .majelis-gkj-image {
+    height: 400px;
+  }
 
-    .majelis-gkj-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-    }
+  .majelis-gkj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
 
-    .majelis-gkj-name {
-        font-size: 0.95rem;
-    }
+  .majelis-gkj-name {
+    font-size: 0.95rem;
+  }
 
-    .majelis-gkj-role {
-        font-size: 0.85rem;
-    }
+  .majelis-gkj-role {
+    font-size: 0.85rem;
+  }
 }
 
 @media (max-width: 480px) {
-    .majelis-gkj-kebonarum {
-        padding: 2.5rem 0;
-    }
+  .majelis-gkj-kebonarum {
+    padding: 2.5rem 0;
+  }
 
-    .majelis-gkj-container {
-        padding: 0 1rem;
-    }
+  .majelis-gkj-container {
+    padding: 0 var(--container-pad-mobile);
+  }
 
-    .majelis-gkj-title {
-        font-size: 1.6rem;
-        margin-bottom: 1.25rem;
-    }
+  .majelis-gkj-title {
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
 
-    .majelis-gkj-description {
-        font-size: 0.95rem;
-        line-height: 1.6;
-    }
+  .majelis-gkj-description {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
 
-    .majelis-gkj-section {
-        margin-bottom: 2rem;
-    }
+  .majelis-gkj-section {
+    margin-bottom: 2rem;
+  }
 
-    .majelis-gkj-subtitle {
-        font-size: 1.4rem;
-        margin-bottom: 1.25rem;
-    }
+  .majelis-gkj-subtitle {
+    font-size: 1.4rem;
+    margin-bottom: 1.25rem;
+  }
 
-    .majelis-gkj-sub-description {
-        font-size: 0.9rem;
-        line-height: 1.7;
-        margin-bottom: 1.5rem;
-    }
+  .majelis-gkj-sub-description {
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
 
-    .majelis-gkj-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-    }
+  .majelis-gkj-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
 
-    .majelis-gkj-image {
-        height: 260px;
-        margin-bottom: 0.75rem;
-    }
+  .majelis-gkj-image {
+    height: 260px;
+    margin-bottom: 0.75rem;
+  }
 
-    .majelis-gkj-name {
-        font-size: 0.9rem;
-    }
+  .majelis-gkj-name {
+    font-size: 0.9rem;
+  }
 
-    .majelis-gkj-role {
-        font-size: 0.8rem;
-    }
+  .majelis-gkj-role {
+    font-size: 0.8rem;
+  }
 }

@@ -1,13 +1,13 @@
 .pendeta-section {
   width: 100%;
   padding: 4rem 0;
-  background: #f7f7f7;
+  background: var(--color-surface-muted);
 }
 
 .pendeta-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .pendeta-title {
@@ -16,7 +16,7 @@
   font-weight: bold;
   margin-bottom: 3rem;
   letter-spacing: 1px;
-  color: #3A3F3C;
+  color: var(--color-brand-900);
 }
 
 .pendeta-carousel-wrapper {
@@ -61,8 +61,8 @@
   height: 180px;
   margin: 20px 20px;
   padding: 1.25rem 1.5rem;
-  background: #344e41db;
-  color: #ffffff;
+  background: var(--color-brand-overlay);
+  color: var(--color-white);
   border-radius: 20px;
 }
 
@@ -79,8 +79,8 @@
 }
 
 .pendeta-carousel-button {
-  background: #D9D9D9;
-  color: #3A3F3C;
+  background: var(--color-neutral-300);
+  color: var(--color-brand-900);
   border: none;
   width: 48px;
   height: 48px;
@@ -95,13 +95,13 @@
 }
 
 .pendeta-carousel-button:hover {
-  background: #3A3F3C;
-  color: #ffffff;
+  background: var(--color-brand-900);
+  color: var(--color-white);
 }
 
 @media (max-width: 1200px) {
   .pendeta-container {
-    padding: 0 1.5rem;
+    padding: 0 var(--container-pad-tablet);
   }
 
   .pendeta-title {
@@ -115,7 +115,7 @@
   }
 
   .pendeta-container {
-    padding: 0 1rem;
+    padding: 0 var(--container-pad-mobile);
   }
 
   .pendeta-title {
@@ -166,5 +166,5 @@
 
   .pendeta-carousel-slides {
     padding: 0 0.5rem;
-  } 
+  }
 }

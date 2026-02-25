@@ -1,6 +1,6 @@
 .separator-section {
   width: 100%;
-  background: #344E41;
+  background: var(--color-brand-800);
   padding: 2rem 0;
   overflow: hidden;
   position: relative;
@@ -20,7 +20,7 @@
   font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
-  color: #ffffff;
+  color: var(--color-white);
   letter-spacing: 3px;
   animation: scroll-left 400s linear infinite;
   will-change: transform;

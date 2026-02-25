@@ -1,5 +1,5 @@
 .documentation-page {
-  color: #1a1a1a;
+  color: var(--color-text-900);
 }
 
 .documentation-hero {
@@ -11,14 +11,14 @@
     url("../../assets/gkj-bg.png");
   background-size: cover;
   background-position: center;
-  color: #ffffff;
+  color: var(--color-white);
   padding: 6rem 0 3rem;
 }
 
 .documentation-hero-content {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .documentation-kicker {
@@ -42,15 +42,15 @@
 }
 
 .documentation-filters {
-  background: #f5f7f5;
+  background: var(--color-surface-subtle);
   padding: 2rem 0;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid var(--color-border-default);
 }
 
 .documentation-filters-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
@@ -59,9 +59,9 @@
 
 .documentation-filter-btn {
   padding: 0.6rem 1rem;
-  border: 2px solid #3a3f3c;
+  border: 2px solid var(--color-brand-900);
   background: transparent;
-  color: #3a3f3c;
+  color: var(--color-brand-900);
   border-radius: 25px;
   cursor: pointer;
   font-size: 0.95rem;
@@ -70,13 +70,13 @@
 }
 
 .documentation-filter-btn:hover {
-  background: #3a3f3c;
-  color: #ffffff;
+  background: var(--color-brand-900);
+  color: var(--color-white);
 }
 
 .documentation-filter-btn.active {
-  background: #3a3f3c;
-  color: #ffffff;
+  background: var(--color-brand-900);
+  color: var(--color-white);
 }
 
 .documentation-section {
@@ -86,7 +86,7 @@
 .documentation-section-inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
 }
 
 .documentation-grid {
@@ -96,7 +96,7 @@
 }
 
 .documentation-card {
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -138,7 +138,7 @@
   top: 12px;
   right: 12px;
   background: rgba(58, 63, 60, 0.9);
-  color: #ffffff;
+  color: var(--color-white);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.75rem;
@@ -157,15 +157,15 @@
 .documentation-card-title {
   font-size: 1.2rem;
   margin: 0 0 auto;
-  color: #3a3f3c;
+  color: var(--color-brand-900);
   line-height: 1.4;
 }
 
 .documentation-card-date {
   font-size: 0.85rem;
-  color: #999;
+  color: var(--color-text-500);
   margin-top: 1rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--color-border-subtle);
   padding-top: 1rem;
 }
 

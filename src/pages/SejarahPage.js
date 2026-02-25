@@ -36,6 +36,7 @@ const SejarahPage = () => {
       description:
         "Pelayanan kategorial diperkuat, termasuk pembinaan anak, remaja, pemuda, dan pelayanan keluarga.",
       image: event4,
+      secondaryImage: event2,
     },
     {
       year: "2020",
@@ -43,8 +44,11 @@ const SejarahPage = () => {
       description:
         "GKJ Kebonarum mulai mengembangkan pelayanan digital agar penggembalaan tetap berjalan di era baru.",
       image: event5,
+      secondaryImage: event3,
     },
   ];
+
+  const doubleRowIndexes = new Set([3, timelineItems.length - 1]);
 
   return (
     <>
@@ -69,44 +73,43 @@ const SejarahPage = () => {
           <div className="sejarah-section-inner">
             <h2 className="sejarah-section-title">Lintasan Waktu</h2>
             <div className="sejarah-timeline">
-              {timelineItems.map((item, index) => (
-                <div
-                  key={item.year}
-                  className={`timeline-item${index % 2 === 1 ? " timeline-item--reverse" : ""}`}
-                >
-                  <div className="timeline-year">{item.year}</div>
-                  <div className="timeline-image">
-                    <img src={item.image} alt={item.title} />
-                  </div>
-                  <div className="timeline-content">
-                    <h3 className="timeline-title">{item.title}</h3>
-                    <p className="timeline-description">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
+              {timelineItems.map((item, index) =>
+                (() => {
+                  const isDouble =
+                    doubleRowIndexes.has(index) && Boolean(item.secondaryImage);
+                  const isReverse = !isDouble && index % 2 === 1;
 
-        <section className="sejarah-highlight">
-          <div className="sejarah-highlight-inner">
-            <div className="highlight-text">
-              <h2 className="highlight-title">Pelayanan yang Bertumbuh</h2>
-              <p className="highlight-description">
-                Dari masa ke masa, GKJ Kebonarum terus bertumbuh dalam pelayanan
-                ibadah, kesaksian, dan diakonia. Setiap generasi berperan
-                menjaga semangat pelayanan agar gereja hadir membawa damai bagi
-                masyarakat.
-              </p>
-            </div>
-            <div className="highlight-card">
-              <h3 className="highlight-card-title">Fokus Pelayanan</h3>
-              <ul className="highlight-list">
-                <li>Pembinaan iman jemaat lintas usia</li>
-                <li>Pelayanan sosial dan diakonia</li>
-                <li>Penguatan keluarga dan komunitas</li>
-                <li>Pelayanan digital dan komunikasi</li>
-              </ul>
+                  return (
+                    <div
+                      key={item.year}
+                      className={`timeline-item${isReverse ? " timeline-item--reverse" : ""}${isDouble ? " timeline-item--double" : ""}`}
+                    >
+                      <div className="timeline-image">
+                        <img src={item.image} alt={item.title} />
+                      </div>
+                      <div className="timeline-content">
+                        <div
+                          className={`timeline-year timeline-year--in-content${isReverse ? " timeline-year--in-content-reverse" : ""}`}
+                        >
+                          {item.year}
+                        </div>
+                        <h3 className="timeline-title">{item.title}</h3>
+                        <p className="timeline-description">
+                          {item.description}
+                        </p>
+                      </div>
+                      {item.secondaryImage && (
+                        <div className="timeline-image timeline-image--secondary">
+                          <img
+                            src={item.secondaryImage}
+                            alt={`${item.title} tambahan`}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  );
+                })(),
+              )}
             </div>
           </div>
         </section>

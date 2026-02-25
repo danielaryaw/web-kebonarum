@@ -10,7 +10,7 @@
 .visi-misi-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 var(--container-pad-desktop);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -18,14 +18,14 @@
 }
 
 .visi-misi-container::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 50%;
   top: 20%;
   transform: translateX(-50%);
   width: 5px;
   height: 60%;
-  background-color: #3A3F3C;
+  background-color: var(--color-brand-900);
   border-radius: 2px;
   z-index: 0;
 }
@@ -83,7 +83,7 @@
     height: auto;
     flex-direction: column;
     gap: 2rem;
-    padding: 0 1rem;
+    padding: 0 var(--container-pad-mobile);
   }
 
   .visi-container,
@@ -100,6 +100,10 @@
     font-size: 0.95rem;
     text-align: center;
   }
+
+  .visi-misi-container::before {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
@@ -110,7 +114,7 @@
 
   .visi-misi-container {
     height: auto;
-    padding: 0 1rem;
+    padding: 0 var(--container-pad-mobile);
     gap: 1.5rem;
   }
 
@@ -131,9 +135,3 @@
 }
 
 /* Separator between Visi and Misi (vertical on desktop, hidden on mobile) */
-
-@media (max-width: 768px) {
-  .visi-misi-container::before {
-    display: none;
-  }
-}
