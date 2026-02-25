@@ -8,6 +8,7 @@ import MajelisListPage from "./pages/MajelisListPage";
 import YoutubePage from "./pages/media/YoutubePage";
 import InstagramPage from "./pages/media/InstagramPage";
 import DocumentationPage from "./pages/media/DocumentationPage";
+import GalleryPage from "./pages/media/GalleryPage";
 
 function App() {
   return (
@@ -22,6 +23,10 @@ function App() {
           <Route path="/media/youtube" element={<YoutubePage />} />
           <Route path="/media/instagram" element={<InstagramPage />} />
           <Route path="/media/documentation" element={<DocumentationPage />} />
+          <Route
+            path="/media/documentation/gallery/:id"
+            element={<GalleryPage />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

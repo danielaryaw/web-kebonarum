@@ -6,13 +6,20 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
+### `npm run dev`
+
+Runs frontend and backend together in development mode.
+
+- React app: [http://localhost:3000](http://localhost:3000)
+- Backend API: [http://localhost:5000](http://localhost:5000)
+
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Runs only the React frontend in development mode.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### `npm run server:dev`
+
+Runs only the backend API server with auto-reload.
 
 ### `npm test`
 
@@ -52,6 +59,43 @@ https://abetkalinggaw.github.io/web-kebonarum
 ```
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+## Google Drive Gallery Setup (Backend API)
+
+Architecture used:
+
+React
+↓
+Backend (Node/Express)
+↓
+Google Drive API
+
+1. In Google Cloud Console:
+   - Enable `Google Drive API`
+   - Create an API key for backend/server usage
+   - Do **not** restrict this key by `HTTP referrers (web sites)`
+   - Use `IP addresses` restriction (server IP) or leave unrestricted during local development
+
+2. In `.env`, set:
+
+```
+GOOGLE_DRIVE_API_KEY=YOUR_GOOGLE_DRIVE_API_KEY
+FRONTEND_ORIGIN=http://localhost:3000
+REACT_APP_API_BASE_URL=
+```
+
+3. In Google Drive, set each photo folder to:
+   - `Anyone with the link` → `Viewer`
+
+4. Fill each `driveFolderId` in `backend/data/documentationItems.js`
+   - Folder URL format:
+     `https://drive.google.com/drive/folders/FOLDER_ID`
+
+5. Run both frontend and backend:
+
+```
+npm run dev
+```
 
 ### `npm run eject`
 
