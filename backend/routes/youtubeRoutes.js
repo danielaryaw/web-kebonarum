@@ -19,7 +19,7 @@ router.get("/videos", async (req, res) => {
   );
 
   const pageSize = Number.isFinite(requestedPageSize)
-    ? Math.max(1, Math.min(requestedPageSize, 50))
+    ? Math.max(1, Math.min(requestedPageSize, 200))
     : 24;
 
   const livestreamPageSize = Number.isFinite(requestedLivestreamPageSize)

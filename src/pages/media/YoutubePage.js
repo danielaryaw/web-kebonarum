@@ -4,7 +4,7 @@ import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
 import { getYoutubeVideos } from "../../services/youtubeApi";
 
-const YOUTUBE_CACHE_KEY = "youtube-page-content-cache-v2";
+const YOUTUBE_CACHE_KEY = "youtube-page-content-cache-v4";
 const YOUTUBE_CACHE_TTL_MS = 5 * 60 * 1000;
 
 const readYoutubeCache = () => {
@@ -130,7 +130,7 @@ const YoutubePage = () => {
       try {
         const { items, livestreamItems, liveNowItems } = await getYoutubeVideos(
           {
-            pageSize: 50,
+            pageSize: 120,
             livestreamPageSize: 12,
           },
         );
@@ -155,7 +155,14 @@ const YoutubePage = () => {
 
   const upcomingLivestream = liveNowVideos[0];
   const pastLivestreams = livestreamVideos.slice(0, 3);
-  const ourContent = youtubeVideos.slice(0, 6);
+  const livestreamVideoIds = new Set(
+    [...livestreamVideos, ...liveNowVideos]
+      .map((video) => video?.id)
+      .filter(Boolean),
+  );
+  const ourContent = youtubeVideos
+    .filter((video) => !livestreamVideoIds.has(video?.id))
+    .slice(0, 6);
 
   return (
     <>
@@ -236,6 +243,19 @@ const YoutubePage = () => {
               ) : (
                 <p className="youtube-error-text">Belum ada video terbaru.</p>
               )}
+            </div>
+            <div className="view-all-button-container">
+              <button
+                className="view-all-button"
+                onClick={() =>
+                  window.open(
+                    "https://www.youtube.com/@gkjkebonarummultimedia3831/videos",
+                    "_blank",
+                  )
+                }
+              >
+                Lihat Semua Konten
+              </button>
             </div>
           </div>
         </section>

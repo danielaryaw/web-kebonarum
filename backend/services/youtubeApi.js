@@ -1,6 +1,32 @@
 const YOUTUBE_API_BASE_URL = "https://www.googleapis.com/youtube/v3";
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY;
 const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
+const YOUTUBE_MEDIA_KEYWORDS = process.env.YOUTUBE_MEDIA_KEYWORDS || "";
+const YOUTUBE_MAX_PAGE_SIZE = 200;
+
+const DEFAULT_MEDIA_KEYWORDS = [
+  "live",
+  "stream",
+  "livestream",
+  "siaran",
+  "siaran langsung",
+  "ibadah",
+  "ibadah raya",
+  "kebaktian",
+  "perayaan",
+  "mirungga",
+  "peladosan",
+  "sakramen",
+  "baptis",
+];
+
+const EXTRA_MEDIA_KEYWORDS = YOUTUBE_MEDIA_KEYWORDS.split(",")
+  .map((keyword) => keyword.trim().toLowerCase())
+  .filter(Boolean);
+
+const MEDIA_KEYWORDS = Array.from(
+  new Set([...DEFAULT_MEDIA_KEYWORDS, ...EXTRA_MEDIA_KEYWORDS]),
+);
 
 const hasYoutubeConfig = () => Boolean(YOUTUBE_API_KEY && YOUTUBE_CHANNEL_ID);
 const hasYoutubeChannelId = () => Boolean(YOUTUBE_CHANNEL_ID);
@@ -74,6 +100,20 @@ const dedupeById = (items) => {
   return uniqueItems;
 };
 
+const escapeRegex = (value = "") =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const buildMediaKeywordRegex = () => {
+  if (!MEDIA_KEYWORDS.length) {
+    return /(live|stream|livestream)/i;
+  }
+
+  const pattern = MEDIA_KEYWORDS.map((keyword) => escapeRegex(keyword)).join(
+    "|",
+  );
+  return new RegExp(`(${pattern})`, "i");
+};
+
 const decodeXmlText = (value = "") =>
   value
     .replace(/&amp;/g, "&")
@@ -119,12 +159,11 @@ const fetchChannelRssVideos = async ({ pageSize = 24 } = {}) => {
       };
     })
     .filter((item) => Boolean(item.id))
-    .slice(0, Math.max(1, Math.min(pageSize, 50)));
+    .slice(0, Math.max(1, Math.min(pageSize, YOUTUBE_MAX_PAGE_SIZE)));
 };
 
 const splitRssVideosForSections = ({ videos, livestreamPageSize = 12 }) => {
-  const livestreamHintRegex =
-    /(live|stream|livestream|ibadah|kebaktian|worship)/i;
+  const livestreamHintRegex = buildMediaKeywordRegex();
   const livestreamItems = videos.filter((item) =>
     livestreamHintRegex.test(item.title || ""),
   );
@@ -173,26 +212,46 @@ const fetchChannelVideos = async ({ pageSize = 24 } = {}) => {
     return [];
   }
 
-  const data = await fetchYoutubeApiJson({
-    path: "/playlistItems",
-    params: {
-      part: "snippet",
-      playlistId: uploadsPlaylistId,
-      maxResults: String(Math.max(1, Math.min(pageSize, 50))),
-    },
-    context: "playlistItems.list",
-  });
+  const targetSize = Math.max(1, Math.min(pageSize, YOUTUBE_MAX_PAGE_SIZE));
+  const mappedVideos = [];
+  let pageToken = "";
 
-  const items = Array.isArray(data.items) ? data.items : [];
+  while (mappedVideos.length < targetSize) {
+    const remaining = targetSize - mappedVideos.length;
+    const maxResults = Math.max(1, Math.min(remaining, 50));
 
-  return items
-    .map((item) =>
-      mapVideoItem({
-        id: item?.snippet?.resourceId?.videoId,
-        snippet: item?.snippet,
-      }),
-    )
-    .filter((item) => Boolean(item.id));
+    const data = await fetchYoutubeApiJson({
+      path: "/playlistItems",
+      params: {
+        part: "snippet",
+        playlistId: uploadsPlaylistId,
+        maxResults: String(maxResults),
+        ...(pageToken ? { pageToken } : {}),
+      },
+      context: "playlistItems.list",
+    });
+
+    const items = Array.isArray(data.items) ? data.items : [];
+
+    mappedVideos.push(
+      ...items
+        .map((item) =>
+          mapVideoItem({
+            id: item?.snippet?.resourceId?.videoId,
+            snippet: item?.snippet,
+          }),
+        )
+        .filter((item) => Boolean(item.id)),
+    );
+
+    if (!data.nextPageToken || !items.length) {
+      break;
+    }
+
+    pageToken = data.nextPageToken;
+  }
+
+  return dedupeById(mappedVideos).slice(0, targetSize);
 };
 
 const fetchChannelLivestreamByEventType = async ({

@@ -27,6 +27,7 @@ function App() {
             path="/media/documentation/gallery/:id"
             element={<GalleryPage />}
           />
+          <Route path="*" element={<LandingPage />} />
         </Routes>
       </div>
     </BrowserRouter>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./Navbar.css";
 import logo from "../../assets/logo.png";
 
@@ -9,6 +8,26 @@ const Navbar = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [searchInput, setSearchInput] = useState("");
   const [openDropdown, setOpenDropdown] = useState(null);
+
+  const getBasePath = () => {
+    const publicUrl = process.env.PUBLIC_URL || "";
+
+    if (!publicUrl) {
+      return "";
+    }
+
+    try {
+      const parsed = new URL(publicUrl, window.location.origin);
+      return parsed.pathname.replace(/\/+$/, "");
+    } catch (error) {
+      return publicUrl.replace(/\/+$/, "");
+    }
+  };
+
+  const resolveAppPath = (path) => {
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    return `${getBasePath()}${normalizedPath}`;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -74,32 +93,60 @@ const Navbar = () => {
     // Add your search logic here
   };
 
+  const handleNavigation = (path, e) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    setOpenDropdown(null);
+
+    window.scrollTo(0, 0);
+
+    const targetPath = resolveAppPath(path);
+    const currentPath = window.location.pathname.replace(/\/+$/, "") || "/";
+    const normalizedTargetPath = targetPath.replace(/\/+$/, "") || "/";
+
+    if (currentPath === normalizedTargetPath) {
+      window.location.reload();
+      return;
+    }
+
+    window.location.assign(targetPath);
+  };
+
   return (
     <nav className={`navbar ${isScrolled ? "scrolled" : ""}`}>
       <div className="navbar-container">
         <div className="navbar-logo">
-          <Link to="/">
+          <a href="/" onClick={(e) => handleNavigation("/", e)}>
             <img src={logo} alt="Kebonarum Logo" className="logo-image" />
-          </Link>
+          </a>
         </div>
 
         <div className={`navbar-menu ${isMenuOpen ? "active" : ""}`}>
           <ul className="navbar-menu-list">
             <li>
-              <Link to="/about">About</Link>
+              <a href="/about" onClick={(e) => handleNavigation("/about", e)}>
+                About
+              </a>
             </li>
             <li>
-              <Link to="/sejarah">Sejarah</Link>
+              <a
+                href="/sejarah"
+                onClick={(e) => handleNavigation("/sejarah", e)}
+              >
+                Sejarah
+              </a>
             </li>
             <li>
-              <Link to="/gereja">Gereja</Link>
+              <a href="/gereja" onClick={(e) => handleNavigation("/gereja", e)}>
+                Gereja
+              </a>
             </li>
             <li
               className={`navbar-dropdown-parent ${
                 openDropdown === "media" ? "active" : ""
               }`}
             >
-              <Link to="#" onClick={(e) => handleDropdownToggle("media", e)}>
+              <a href="#" onClick={(e) => handleDropdownToggle("media", e)}>
                 <span className="dropdown-trigger">
                   Media
                   <span className="dropdown-arrow" aria-hidden="true">
@@ -120,16 +167,31 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </Link>
+              </a>
               <ul className="navbar-dropdown">
                 <li>
-                  <Link to="/media/youtube">YouTube</Link>
+                  <a
+                    href="/media/youtube"
+                    onClick={(e) => handleNavigation("/media/youtube", e)}
+                  >
+                    YouTube
+                  </a>
                 </li>
                 <li>
-                  <Link to="/media/instagram">Instagram</Link>
+                  <a
+                    href="/media/instagram"
+                    onClick={(e) => handleNavigation("/media/instagram", e)}
+                  >
+                    Instagram
+                  </a>
                 </li>
                 <li>
-                  <Link to="/media/documentation">Documentation</Link>
+                  <a
+                    href="/media/documentation"
+                    onClick={(e) => handleNavigation("/media/documentation", e)}
+                  >
+                    Documentation
+                  </a>
                 </li>
               </ul>
             </li>
@@ -138,8 +200,8 @@ const Navbar = () => {
                 openDropdown === "pengumuman" ? "active" : ""
               }`}
             >
-              <Link
-                to="#"
+              <a
+                href="#"
                 onClick={(e) => handleDropdownToggle("pengumuman", e)}
               >
                 <span className="dropdown-trigger">
@@ -162,13 +224,25 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </Link>
+              </a>
               <ul className="navbar-dropdown">
                 <li>
-                  <Link to="/pengumuman/event">Event</Link>
+                  <a
+                    href="/pengumuman/event"
+                    onClick={(e) => handleNavigation("/pengumuman/event", e)}
+                  >
+                    Event
+                  </a>
                 </li>
                 <li>
-                  <Link to="/pengumuman/warta-gereja">Warta Gereja</Link>
+                  <a
+                    href="/pengumuman/warta-gereja"
+                    onClick={(e) =>
+                      handleNavigation("/pengumuman/warta-gereja", e)
+                    }
+                  >
+                    Warta Gereja
+                  </a>
                 </li>
               </ul>
             </li>
@@ -177,7 +251,7 @@ const Navbar = () => {
                 openDropdown === "komisi" ? "active" : ""
               }`}
             >
-              <Link to="#" onClick={(e) => handleDropdownToggle("komisi", e)}>
+              <a href="#" onClick={(e) => handleDropdownToggle("komisi", e)}>
                 <span className="dropdown-trigger">
                   Komisi
                   <span className="dropdown-arrow" aria-hidden="true">
@@ -198,27 +272,59 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </Link>
+              </a>
               <ul className="navbar-dropdown">
                 <li>
-                  <Link to="/komisi/pwg">PWG & Ibadah</Link>
+                  <a
+                    href="/komisi/pwg"
+                    onClick={(e) => handleNavigation("/komisi/pwg", e)}
+                  >
+                    PWG & Ibadah
+                  </a>
                 </li>
                 <li>
-                  <Link to="/komisi/diaken">Diaken</Link>
+                  <a
+                    href="/komisi/diaken"
+                    onClick={(e) => handleNavigation("/komisi/diaken", e)}
+                  >
+                    Diaken
+                  </a>
                 </li>
                 <li>
-                  <Link to="/komisi/Penatalayanan">Penatalayanan</Link>
+                  <a
+                    href="/komisi/Penatalayanan"
+                    onClick={(e) =>
+                      handleNavigation("/komisi/Penatalayanan", e)
+                    }
+                  >
+                    Penatalayanan
+                  </a>
                 </li>
               </ul>
             </li>
             <li>
-              <Link to="/statistik">Statistik</Link>
+              <a
+                href="/statistik"
+                onClick={(e) => handleNavigation("/statistik", e)}
+              >
+                Statistik
+              </a>
             </li>
             <li>
-              <Link to="/formulir">Formulir</Link>
+              <a
+                href="/formulir"
+                onClick={(e) => handleNavigation("/formulir", e)}
+              >
+                Formulir
+              </a>
             </li>
             <li>
-              <Link to="/persembahan">Persembahan</Link>
+              <a
+                href="/persembahan"
+                onClick={(e) => handleNavigation("/persembahan", e)}
+              >
+                Persembahan
+              </a>
             </li>
           </ul>
 
