@@ -65,7 +65,7 @@
 }
 
 .youtube-section-inner {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--container-pad-desktop);
 }
@@ -82,7 +82,9 @@
 }
 
 .youtube-grid-single {
-  grid-template-columns: 1fr;
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1100px);
+  justify-content: center;
 }
 
 .youtube-grid-three {
@@ -100,6 +102,34 @@
   border-radius: 14px;
   overflow: hidden;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
+}
+
+.youtube-video-card-skeleton {
+  box-shadow: none;
+}
+
+.youtube-live-empty-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 320px;
+  padding: 2rem;
+  border-radius: 14px;
+  background: linear-gradient(150deg, rgba(20, 20, 20, 0.95), rgba(35, 35, 35, 0.92));
+  color: var(--color-white);
+}
+
+.youtube-live-empty-title {
+  margin: 0 0 0.6rem;
+  font-size: 1.6rem;
+  line-height: 1.3;
+}
+
+.youtube-live-empty-text {
+  margin: 0;
+  max-width: 36rem;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.6;
 }
 
 .youtube-video-frame-wrapper {
@@ -130,12 +160,60 @@
   font-size: 1.2rem;
   color: #2d2d2d;
   line-height: 1.5;
+  min-height: 3em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
 }
 
 .youtube-video-date {
   margin: auto 0 0;
   color: #5d5d5d;
   font-size: 0.92rem;
+}
+
+.youtube-error-text {
+  margin: 0;
+  color: #5d5d5d;
+  font-size: 0.92rem;
+}
+
+.youtube-skeleton-block,
+.youtube-skeleton-line {
+  background: linear-gradient(
+    90deg,
+    rgba(220, 224, 231, 0.7) 0%,
+    rgba(239, 241, 245, 0.95) 50%,
+    rgba(220, 224, 231, 0.7) 100%
+  );
+  background-size: 200% 100%;
+  animation: youtube-skeleton-shimmer 1.3s ease-in-out infinite;
+}
+
+.youtube-skeleton-line {
+  border-radius: 999px;
+}
+
+.youtube-skeleton-title {
+  height: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.youtube-skeleton-date {
+  width: 45%;
+  height: 0.9rem;
+  margin-top: auto;
+}
+
+@keyframes youtube-skeleton-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }
 
 @media (max-width: 1024px) {

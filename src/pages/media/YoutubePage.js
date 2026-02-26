@@ -2,150 +2,57 @@ import { useEffect, useState } from "react";
 import "./YoutubePage.css";
 import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
-import { LIVESTREAM_TITLE_KEYWORDS } from "../../config/mediaKeywords";
+import { getYoutubeVideos } from "../../services/youtubeApi";
 
-const youtubeChannelFeedUrl =
-  "https://www.youtube.com/feeds/videos.xml?channel_id=UCMUr6P7SpHUbsZYAUo84byA";
+const YOUTUBE_CACHE_KEY = "youtube-page-content-cache-v2";
+const YOUTUBE_CACHE_TTL_MS = 5 * 60 * 1000;
 
-const fallbackYoutubeVideos = [
-  {
-    id: "VomB-0dY230",
-    title: "THE FIRST NOEL | COVER BY EKLESIA",
-    uploadedAt: "2025-12-25",
-  },
-  {
-    id: "LSaeu_usXsM",
-    title: "LAGU PENGHIBURAN ROHANI KRISTEN AKUSTIK (Cover)",
-    uploadedAt: "2025-07-29",
-  },
-  {
-    id: "4kgsPTC164c",
-    title: "LAGU PENGHIBURAN KERONCONG ROHANI (Cover)",
-    uploadedAt: "2025-07-29",
-  },
-  {
-    id: "RNOCQ13-alU",
-    title: "LAGU PENGHIBURAN KARAWITAN ROHANI (Cover)",
-    uploadedAt: "2025-07-29",
-  },
-  {
-    id: "periBEz-k4U",
-    title: "DOA BAPA KAMI (Cover)",
-    uploadedAt: "2025-04-18",
-  },
-  {
-    id: "uYMSg37IDlw",
-    title: "SHINE JESUS SHINE | COVER BY EKLESIA",
-    uploadedAt: "2024-12-25",
-  },
-  {
-    id: "tiJvvmNADws",
-    title: "KJ 329 - TINGGAL SERTAKU (Cover)",
-    uploadedAt: "2024-03-29",
-  },
-  {
-    id: "uv2Lx43X2K4",
-    title: "KPJ 218 DALU SUCI (Cover)",
-    uploadedAt: "2023-12-25",
-  },
-  {
-    id: "75fe0Pn_MbU",
-    title: "PELANGI DIMATAMU JINGLE KOMPAREM GKJ KEBONARUM",
-    uploadedAt: "2023-12-25",
-  },
-  {
-    id: "Of99cgUkpLQ",
-    title: "IBADAH EKSPRESIF | 22 FEBRUARI 2026 | GKJ KEBONARUM",
-    uploadedAt: "2026-02-23",
-  },
-  {
-    id: "z59ltPd3wtc",
-    title: "IBADAH RABU ABU | 18 FEBRUARI 2026 | GKJ KEBONARUM",
-    uploadedAt: "2026-02-19",
-  },
-  {
-    id: "wRta4MvgPXc",
-    title: "PERAYAAN NATAL BLOK V GKJ KEBONARUM || 26 DESEMBER 2025",
-    uploadedAt: "2025-12-27",
-  },
-  {
-    id: "HoC6t5ENF2Y",
-    title:
-      'IBADAH NATAL GKJ KEBONARUM 25 DESEMBER 2025 || "LAWATAN ALLAH MENGATASI KETAKUTAN"',
-    uploadedAt: "2025-12-25",
-  },
-  {
-    id: "t28YQVcGcsM",
-    title:
-      "IBADAH PELETAKAN DAN PENEGUHAN MAJELIS | GKJ KEBONARUM | 30 NOVEMBER 2025",
-    uploadedAt: "2025-11-30",
-  },
-  {
-    id: "Orr3MN9daA0",
-    title: "IBADAH EXPRESIF BULAN KELUARGA  || GKJ KEBONARUM || 26-10-2025",
-    uploadedAt: "2025-10-26",
-  },
-  {
-    id: "jifWiYjp5zE",
-    title:
-      "IBADAH HARI PERJAMUAN KUDUS se-DUNIA || GKJ KEBONARUM || 05-10-2025",
-    uploadedAt: "2025-10-05",
-  },
-  {
-    id: "wYTvVNsARp4",
-    title:
-      "IBADAH EKSPRESIF EKOLOGI DAN HARI DOA ALKITAB || MINGGU 28 SEPTEMBER 2025 || GKJ KEBONARUM",
-    uploadedAt: "2025-09-28",
-  },
-  {
-    id: "6ePIEiFAsd0",
-    title:
-      "IBADAH PENEGUHAN PERNIKAHAN & PEMBERKATAN PERKAWINAN FERRA & CAHYO || 28-09-2025 || GKJ KEBONARUM",
-    uploadedAt: "2025-09-28",
-  },
-  {
-    id: "JE0KzMQTCJc",
-    title:
-      "IBADAH EKSPRESIF HARI KEMERDEKAAN || MINGGU 31 AGUSTUS 2025 || GKJ KEBONARUM",
-    uploadedAt: "2025-09-01",
-  },
-  {
-    id: "2l95a8cgoqA",
-    title:
-      "IBADAH EKSPRESIF HARI ANAK NASIONAL || MINGGU 27 JULI 2025 || GKJ KEBONARUM",
-    uploadedAt: "2025-07-28",
-  },
-];
+const readYoutubeCache = () => {
+  try {
+    const rawCache = localStorage.getItem(YOUTUBE_CACHE_KEY);
 
-const isLivestreamVideo = (title = "") => {
-  const normalizedTitle = title.toUpperCase();
-  return LIVESTREAM_TITLE_KEYWORDS.some((keyword) =>
-    normalizedTitle.includes(keyword),
-  );
+    if (!rawCache) {
+      return null;
+    }
+
+    const parsedCache = JSON.parse(rawCache);
+    const isExpired = Date.now() - parsedCache.timestamp > YOUTUBE_CACHE_TTL_MS;
+
+    if (isExpired) {
+      localStorage.removeItem(YOUTUBE_CACHE_KEY);
+      return null;
+    }
+
+    const items = Array.isArray(parsedCache.items) ? parsedCache.items : [];
+    const livestreamItems = Array.isArray(parsedCache.livestreamItems)
+      ? parsedCache.livestreamItems
+      : [];
+    const liveNowItems = Array.isArray(parsedCache.liveNowItems)
+      ? parsedCache.liveNowItems
+      : [];
+
+    return {
+      items,
+      livestreamItems,
+      liveNowItems,
+    };
+  } catch (error) {
+    localStorage.removeItem(YOUTUBE_CACHE_KEY);
+    return null;
+  }
 };
 
-const parseFeedVideos = (xmlText) => {
-  const parser = new DOMParser();
-  const xml = parser.parseFromString(xmlText, "application/xml");
-  const entries = Array.from(xml.getElementsByTagName("entry"));
+const writeYoutubeCache = ({ items, livestreamItems, liveNowItems }) => {
+  try {
+    const payload = {
+      timestamp: Date.now(),
+      items,
+      livestreamItems,
+      liveNowItems,
+    };
 
-  return entries
-    .map((entry) => {
-      const id = entry
-        .getElementsByTagName("yt:videoId")[0]
-        ?.textContent?.trim();
-      const title = entry.getElementsByTagName("title")[0]?.textContent?.trim();
-      const uploadedAt = entry
-        .getElementsByTagName("published")[0]
-        ?.textContent?.trim();
-
-      if (!id || !title || !uploadedAt) {
-        return null;
-      }
-
-      return { id, title, uploadedAt };
-    })
-    .filter(Boolean);
+    localStorage.setItem(YOUTUBE_CACHE_KEY, JSON.stringify(payload));
+  } catch (error) {}
 };
 
 const formatDate = (value) => {
@@ -176,37 +83,79 @@ const VideoCard = ({ item }) => (
   </article>
 );
 
+const SkeletonCard = () => (
+  <article
+    className="youtube-video-card youtube-video-card-skeleton"
+    aria-hidden
+  >
+    <div className="youtube-video-frame-wrapper youtube-skeleton-block"></div>
+    <div className="youtube-video-meta">
+      <div className="youtube-skeleton-line youtube-skeleton-title"></div>
+      <div className="youtube-skeleton-line youtube-skeleton-title"></div>
+      <div className="youtube-skeleton-line youtube-skeleton-date"></div>
+    </div>
+  </article>
+);
+
+const LiveNowEmptyCard = () => (
+  <article className="youtube-live-empty-card" role="status" aria-live="polite">
+    <h3 className="youtube-live-empty-title">Belum Ada Live Sekarang</h3>
+    <p className="youtube-live-empty-text">
+      Jadwal livestream berikutnya belum tersedia. Silakan cek lagi nanti.
+    </p>
+  </article>
+);
+
 const YoutubePage = () => {
-  const [youtubeVideos, setYoutubeVideos] = useState(fallbackYoutubeVideos);
+  const [youtubeVideos, setYoutubeVideos] = useState([]);
+  const [livestreamVideos, setLivestreamVideos] = useState([]);
+  const [liveNowVideos, setLiveNowVideos] = useState([]);
+  const [isLoadingYoutubeVideos, setIsLoadingYoutubeVideos] = useState(false);
+  const [youtubeError, setYoutubeError] = useState("");
 
   useEffect(() => {
-    const getYoutubeVideos = async () => {
-      try {
-        const response = await fetch(youtubeChannelFeedUrl);
-        const xmlText = await response.text();
-        const videos = parseFeedVideos(xmlText);
+    const cachedContent = readYoutubeCache();
 
-        if (videos.length > 0) {
-          setYoutubeVideos(videos);
-        }
+    if (cachedContent) {
+      setYoutubeVideos(cachedContent.items);
+      setLivestreamVideos(cachedContent.livestreamItems);
+      setLiveNowVideos(cachedContent.liveNowItems);
+      setIsLoadingYoutubeVideos(false);
+    }
+
+    const loadYoutubeVideos = async () => {
+      setIsLoadingYoutubeVideos(!cachedContent);
+      setYoutubeError("");
+
+      try {
+        const { items, livestreamItems, liveNowItems } = await getYoutubeVideos(
+          {
+            pageSize: 50,
+            livestreamPageSize: 12,
+          },
+        );
+        setYoutubeVideos(items);
+        setLivestreamVideos(livestreamItems);
+        setLiveNowVideos(liveNowItems);
+        writeYoutubeCache({ items, livestreamItems, liveNowItems });
       } catch (error) {
-        setYoutubeVideos(fallbackYoutubeVideos);
+        if (!cachedContent) {
+          setYoutubeVideos([]);
+          setLivestreamVideos([]);
+          setLiveNowVideos([]);
+          setYoutubeError("Konten YouTube belum dapat dimuat saat ini.");
+        }
+      } finally {
+        setIsLoadingYoutubeVideos(false);
       }
     };
 
-    getYoutubeVideos();
+    loadYoutubeVideos();
   }, []);
 
-  const livestreamVideos = youtubeVideos.filter((video) =>
-    isLivestreamVideo(video.title),
-  );
-  const regularVideos = youtubeVideos.filter(
-    (video) => !isLivestreamVideo(video.title),
-  );
-
-  const upcomingLivestream = livestreamVideos[0] || youtubeVideos[0];
-  const pastLivestreams = livestreamVideos.slice(1, 4);
-  const latestVideos = regularVideos.slice(0, 9);
+  const upcomingLivestream = liveNowVideos[0];
+  const pastLivestreams = livestreamVideos.slice(0, 3);
+  const ourContent = youtubeVideos.slice(0, 6);
 
   return (
     <>
@@ -238,14 +187,16 @@ const YoutubePage = () => {
 
         <section className="youtube-section">
           <div className="youtube-section-inner">
-            <h2 className="youtube-section-title">Upcoming Livestreaming</h2>
+            <h2 className="youtube-section-title">Live Now</h2>
             <div className="youtube-grid youtube-grid-single">
-              {upcomingLivestream ? (
+              {isLoadingYoutubeVideos ? (
+                <SkeletonCard />
+              ) : upcomingLivestream ? (
                 <VideoCard item={upcomingLivestream} />
+              ) : youtubeError ? (
+                <p className="youtube-error-text">{youtubeError}</p>
               ) : (
-                <p className="youtube-video-date">
-                  Belum ada konten livestream.
-                </p>
+                <LiveNowEmptyCard />
               )}
             </div>
           </div>
@@ -255,20 +206,36 @@ const YoutubePage = () => {
           <div className="youtube-section-inner">
             <h2 className="youtube-section-title">Past Livestreaming</h2>
             <div className="youtube-grid youtube-grid-three">
-              {pastLivestreams.map((item) => (
-                <VideoCard key={item.id} item={item} />
-              ))}
+              {isLoadingYoutubeVideos ? (
+                Array.from({ length: 3 }).map((_, index) => (
+                  <SkeletonCard key={`past-livestream-skeleton-${index}`} />
+                ))
+              ) : pastLivestreams.length > 0 ? (
+                pastLivestreams.map((item) => (
+                  <VideoCard key={item.id} item={item} />
+                ))
+              ) : (
+                <p className="youtube-error-text">Belum ada data livestream.</p>
+              )}
             </div>
           </div>
         </section>
 
         <section className="youtube-section">
           <div className="youtube-section-inner">
-            <h2 className="youtube-section-title">Latest Videos</h2>
+            <h2 className="youtube-section-title">Our Content</h2>
             <div className="youtube-grid youtube-grid-six">
-              {latestVideos.map((item) => (
-                <VideoCard key={item.id} item={item} />
-              ))}
+              {isLoadingYoutubeVideos ? (
+                Array.from({ length: 6 }).map((_, index) => (
+                  <SkeletonCard key={`our-content-skeleton-${index}`} />
+                ))
+              ) : ourContent.length > 0 ? (
+                ourContent.map((item) => (
+                  <VideoCard key={item.id} item={item} />
+                ))
+              ) : (
+                <p className="youtube-error-text">Belum ada video terbaru.</p>
+              )}
             </div>
           </div>
         </section>
