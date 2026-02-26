@@ -1,12 +1,13 @@
 import "./GerejaListPage.css";
 import Navbar from "../components/menu/Navbar";
 import Footer from "../components/menu/Footer";
-import { INSTAGRAM_ACCOUNT_URL } from "../config/instagramFeeds";
 import sejarah1 from "../assets/sejarah/1.jpg";
 import sejarah2 from "../assets/sejarah/2.jpg";
 import sejarah3 from "../assets/sejarah/3.jpg";
 import sejarah4 from "../assets/sejarah/4.jpg";
 import sejarah5 from "../assets/sejarah/5.jpg";
+
+const INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/gkj_kebonarum/";
 
 const GerejaListPage = () => {
   const defaultContact = {
@@ -115,34 +116,34 @@ const GerejaListPage = () => {
                             <li key={idx}>{jadwal}</li>
                           ))}
                         </ul>
+                      </div>
 
-                        <div className="gereja-item-contact">
-                          <h4 className="schedule-label">Kontak</h4>
-                          <ul className="contact-list">
-                            <li>
-                              Telp:{" "}
-                              <a href={gereja.contact.phoneLink}>
-                                {gereja.contact.phone}
-                              </a>
-                            </li>
-                            <li>
-                              Email:{" "}
-                              <a href={`mailto:${gereja.contact.email}`}>
-                                {gereja.contact.email}
-                              </a>
-                            </li>
-                            <li>
-                              Instagram:{" "}
-                              <a
-                                href={INSTAGRAM_ACCOUNT_URL}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                {gereja.contact.instagram}
-                              </a>
-                            </li>
-                          </ul>
-                        </div>
+                      <div className="gereja-item-contact">
+                        <h4 className="schedule-label">Kontak</h4>
+                        <ul className="contact-list">
+                          <li>
+                            Telp:{" "}
+                            <a href={gereja.contact.phoneLink}>
+                              {gereja.contact.phone}
+                            </a>
+                          </li>
+                          <li>
+                            Email:{" "}
+                            <a href={`mailto:${gereja.contact.email}`}>
+                              {gereja.contact.email}
+                            </a>
+                          </li>
+                          <li>
+                            Instagram:{" "}
+                            <a
+                              href={INSTAGRAM_ACCOUNT_URL}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {gereja.contact.instagram}
+                            </a>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>

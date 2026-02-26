@@ -1,76 +1,22 @@
-import { useEffect, useState } from "react";
 import "./InstagramPage.css";
 import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
-import {
-  INSTAGRAM_ACCESS_TOKEN,
-  INSTAGRAM_ACCOUNT_URL,
-  INSTAGRAM_FEED_ITEMS,
-  INSTAGRAM_FEED_LIMIT,
-  INSTAGRAM_GRAPH_API_URL,
-} from "../../config/instagramFeeds";
+import { useEffect } from "react";
+
+const INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/gkj_kebonarum/";
 
 const InstagramPage = () => {
-  const [instagramFeedItems, setInstagramFeedItems] =
-    useState(INSTAGRAM_FEED_ITEMS);
-
   useEffect(() => {
-    const fetchInstagramFeeds = async () => {
-      if (!INSTAGRAM_ACCESS_TOKEN) {
-        return;
-      }
-
-      try {
-        const query = new URLSearchParams({
-          fields: "id,caption,media_type,permalink,timestamp",
-          limit: String(INSTAGRAM_FEED_LIMIT),
-          access_token: INSTAGRAM_ACCESS_TOKEN,
-        });
-
-        const response = await fetch(`${INSTAGRAM_GRAPH_API_URL}?${query}`);
-        const result = await response.json();
-        const mediaItems = Array.isArray(result?.data) ? result.data : [];
-
-        const mappedFeedItems = mediaItems
-          .filter((item) => item?.permalink)
-          .map((item) => ({
-            id: item.id,
-            permalink: item.permalink,
-          }));
-
-        if (mappedFeedItems.length > 0) {
-          setInstagramFeedItems(mappedFeedItems);
-        }
-      } catch (error) {
-        setInstagramFeedItems(INSTAGRAM_FEED_ITEMS);
-      }
-    };
-
-    fetchInstagramFeeds();
-  }, []);
-
-  useEffect(() => {
-    const loadInstagramEmbed = () => {
+    // Load Instagram embed script
+    if (window.instgrm) {
+      window.instgrm.Embeds.process();
+    } else {
       const script = document.createElement("script");
       script.src = "https://www.instagram.com/embed.js";
       script.async = true;
-      script.onload = () => {
-        if (window.instgrm?.Embeds?.process) {
-          window.instgrm.Embeds.process();
-        }
-      };
       document.body.appendChild(script);
-    };
-
-    if (!window.instgrm) {
-      loadInstagramEmbed();
-      return;
     }
-
-    if (window.instgrm?.Embeds?.process) {
-      window.instgrm.Embeds.process();
-    }
-  }, [instagramFeedItems]);
+  }, []);
 
   return (
     <>
@@ -101,21 +47,16 @@ const InstagramPage = () => {
 
         <section className="instagram-section">
           <div className="instagram-section-inner">
-            <h2 className="instagram-section-title">Feed Instagram</h2>
-            <div className="instagram-grid">
-              {instagramFeedItems.map((item) => (
-                <article key={item.id} className="instagram-card">
-                  <blockquote
-                    className="instagram-media"
-                    data-instgrm-permalink={`${item.permalink}?utm_source=ig_embed&utm_campaign=loading`}
-                    data-instgrm-version="14"
-                  >
-                    <a href={item.permalink} target="_blank" rel="noreferrer">
-                      Lihat post Instagram
-                    </a>
-                  </blockquote>
-                </article>
-              ))}
+            <div
+              className="instagram-blockquote-container"
+              style={{ display: "flex", justifyContent: "center" }}
+            >
+              <blockquote
+                className="instagram-media"
+                data-instgrm-permalink="https://www.instagram.com/gkj_kebonarum/"
+                data-instgrm-version="12"
+                style={{ width: "800px", border: "none", overflow: "hidden" }}
+              ></blockquote>
             </div>
           </div>
         </section>

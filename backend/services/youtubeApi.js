@@ -134,7 +134,12 @@ const fetchChannelRssVideos = async ({ pageSize = 24 } = {}) => {
   }
 
   const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${encodeURIComponent(YOUTUBE_CHANNEL_ID)}`;
-  const response = await fetch(feedUrl);
+  const response = await fetch(feedUrl, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (compatible; YouTubeRSSFetcher/1.0; +http://www.youtube.com)",
+    },
+  });
 
   if (!response.ok) {
     throw new Error(
