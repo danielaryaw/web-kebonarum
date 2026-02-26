@@ -4,6 +4,14 @@ const YOUTUBE_CHANNEL_ID = process.env.YOUTUBE_CHANNEL_ID;
 const YOUTUBE_MEDIA_KEYWORDS = process.env.YOUTUBE_MEDIA_KEYWORDS || "";
 const YOUTUBE_MAX_PAGE_SIZE = 200;
 
+console.log("[YouTubeAPI] Initialization:");
+console.log("[YouTubeAPI] - API Key configured:", Boolean(YOUTUBE_API_KEY));
+console.log(
+  "[YouTubeAPI] - Channel ID configured:",
+  Boolean(YOUTUBE_CHANNEL_ID),
+);
+console.log("[YouTubeAPI] - Channel ID value:", YOUTUBE_CHANNEL_ID);
+
 const DEFAULT_MEDIA_KEYWORDS = [
   "live",
   "stream",
@@ -275,7 +283,7 @@ const fetchChannelLivestreamByEventType = async ({
       type: "video",
       eventType,
       order: "date",
-      maxResults: String(Math.max(1, Math.min(pageSize, 50))),
+      maxResults: String(Math.max(1, Math.min(pageSize, 6))),
     },
     context: `search.${eventType}`,
   });
@@ -295,18 +303,18 @@ const fetchChannelLivestreamByEventType = async ({
 const fetchPastLivestreams = async ({ pageSize = 12 } = {}) =>
   fetchChannelLivestreamByEventType({
     eventType: "completed",
-    pageSize,
+    pageSize: Math.max(1, Math.min(pageSize, 6)),
   });
 
 const fetchLiveAndUpcomingLivestreams = async ({ pageSize = 12 } = {}) => {
   const [liveItems, upcomingItems] = await Promise.all([
     fetchChannelLivestreamByEventType({
       eventType: "live",
-      pageSize,
+      pageSize: 3,
     }),
     fetchChannelLivestreamByEventType({
       eventType: "upcoming",
-      pageSize,
+      pageSize: 3,
     }),
   ]);
 

@@ -4,8 +4,8 @@ import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
 import { getYoutubeVideos } from "../../services/youtubeApi";
 
-const YOUTUBE_CACHE_KEY = "youtube-page-content-cache-v4";
-const YOUTUBE_CACHE_TTL_MS = 5 * 60 * 1000;
+const YOUTUBE_CACHE_KEY = "youtube-page-content-cache";
+const YOUTUBE_CACHE_TTL_MS = 60 * 60 * 1000;
 
 const readYoutubeCache = () => {
   try {
@@ -155,14 +155,15 @@ const YoutubePage = () => {
 
   const upcomingLivestream = liveNowVideos[0];
   const pastLivestreams = livestreamVideos.slice(0, 3);
-  const livestreamVideoIds = new Set(
-    [...livestreamVideos, ...liveNowVideos]
-      .map((video) => video?.id)
-      .filter(Boolean),
+  // Only exclude past-livestream IDs from Our Content — keeping liveNowVideos
+  // separate avoids wiping out all videos when RSS fallback puts the same
+  // items in multiple sections.
+  const pastLivestreamIds = new Set(
+    livestreamVideos.map((video) => video?.id).filter(Boolean),
   );
   const ourContent = youtubeVideos
-    .filter((video) => !livestreamVideoIds.has(video?.id))
-    .slice(0, 6);
+    .filter((video) => !pastLivestreamIds.has(video?.id))
+    .slice(0, 4);
 
   return (
     <>
