@@ -9,7 +9,7 @@ import YoutubePage from "./pages/media/YoutubePage";
 import InstagramPage from "./pages/media/InstagramPage";
 import DocumentationPage from "./pages/media/DocumentationPage";
 import GalleryPage from "./pages/media/GalleryPage";
-import WartaGerejaPage from "./pages/pengumuman/WartaGerejaPage";
+import WartaListPage from "./pages/pengumuman/WartaListPage";
 
 function App() {
   return (
@@ -28,10 +28,7 @@ function App() {
             path="/media/documentation/gallery/:id"
             element={<GalleryPage />}
           />
-          <Route
-            path="/pengumuman/warta-gereja"
-            element={<WartaGerejaPage />}
-          />
+          <Route path="/pengumuman/warta-gereja" element={<WartaListPage />} />
           <Route path="*" element={<LandingPage />} />
         </Routes>
       </div>
