@@ -15,7 +15,6 @@ import FormulirPage from "./pages/FormulirPage";
 
 function App() {
   return (
-    <Analytics />
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Routes>
@@ -36,6 +35,7 @@ function App() {
           <Route path="/formulir" element={<FormulirPage />} />
           <Route path="*" element={<LandingPage />} />
         </Routes>
+        <Analytics />
       </div>
     </BrowserRouter>
   );
