@@ -1,4 +1,5 @@
 import "./App.css";
+import { Analytics } from "@vercel/analytics/react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
@@ -14,6 +15,7 @@ import FormulirPage from "./pages/FormulirPage";
 
 function App() {
   return (
+    <Analytics />
     <BrowserRouter basename={process.env.PUBLIC_URL}>
       <div className="App">
         <Routes>
