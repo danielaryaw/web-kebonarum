@@ -300,6 +300,15 @@ const GalleryPage = () => {
     setSelectedImage(null);
   };
 
+  const handleBackClick = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/media/documentation");
+  };
+
   const displayTitle = item?.title || "";
   const displayDate = item?.date ? formatDate(item.date) : "";
   const displayDescription = item?.description || "";
@@ -310,10 +319,7 @@ const GalleryPage = () => {
       <main className="gallery-page">
         <section className="gallery-hero">
           <div className="gallery-hero-content">
-            <button
-              className="back-button"
-              onClick={() => navigate("/media/documentation")}
-            >
+            <button className="back-button" onClick={handleBackClick}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
                   d="M12.5 15L7.5 10L12.5 5"

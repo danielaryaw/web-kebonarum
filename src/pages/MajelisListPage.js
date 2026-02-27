@@ -11,6 +11,15 @@ import majelis6 from "../assets/majelis/majelis6.jpg";
 
 const MajelisListPage = () => {
   const navigate = useNavigate();
+  const handleBackClick = () => {
+    if (window.history.length > 1) {
+      navigate(-1);
+      return;
+    }
+
+    navigate("/about");
+  };
+
   const majelisPenatuaData = [
     {
       id: 1,
@@ -263,7 +272,7 @@ const MajelisListPage = () => {
       <main className="majelis-list-page">
         <section className="majelis-list-hero">
           <div className="majelis-list-hero-content">
-            <button className="back-button" onClick={() => navigate("/about")}>
+            <button className="back-button" onClick={handleBackClick}>
               <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path
                   d="M12.5 15L7.5 10L12.5 5"
