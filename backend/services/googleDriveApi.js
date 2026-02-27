@@ -132,33 +132,85 @@ const fetchDriveFolderCoverUrl = async (folderId) => {
 };
 
 /**
- * Fetches cover images for multiple folders in a single API call.
- * Returns a map of { folderId -> thumbnailUrl }.
+ * Fetches cover images for multiple folders.
+ *
+ * Strategy:
+ * 1. Try batched OR query in chunks of 20 (avoids query length limits).
+ * 2. If `parents` field is missing from results (API key restriction)
+ *    or batch returns 0 files, fall back to individual fetches per folder.
+ * 3. If batch throws entirely, fall back to individual fetches.
  */
 const fetchDriveFolderCoversMap = async (folderIds) => {
   if (!folderIds.length) return {};
 
-  const query = `(${folderIds.map((id) => `'${id}' in parents`).join(" or ")}) and mimeType contains 'image/' and trashed=false`;
-
-  const data = await fetchDriveFiles({
-    query,
-    pageSize: folderIds.length, // at most 1 cover image needed per folder
-    orderBy: "createdTime",
-    fields: "files(id,parents,mimeType,createdTime)",
-  });
-
-  const files = Array.isArray(data.files) ? data.files : [];
-
-  // Keep only the first image found per folder
+  const CHUNK_SIZE = 20;
   const coverMap = {};
-  for (const file of files) {
-    const parentId = file.parents?.[0];
-    if (parentId && !coverMap[parentId] && file.id) {
-      coverMap[parentId] = createDriveThumbnailUrl(file.id);
-    }
-  }
 
-  return coverMap;
+  try {
+    for (let i = 0; i < folderIds.length; i += CHUNK_SIZE) {
+      const chunk = folderIds.slice(i, i + CHUNK_SIZE);
+      const query = `(${chunk
+        .map((id) => `'${id}' in parents`)
+        .join(" or ")}) and mimeType contains 'image/' and trashed=false`;
+
+      const data = await fetchDriveFiles({
+        query,
+        pageSize: chunk.length,
+        orderBy: "createdTime",
+        fields: "files(id,parents,mimeType,createdTime)",
+      });
+
+      const files = Array.isArray(data.files) ? data.files : [];
+
+      // Detect if `parents` field is actually returned by the API
+      const parentsAvailable = files.some(
+        (file) => Array.isArray(file.parents) && file.parents.length > 0,
+      );
+
+      if (files.length === 0 || !parentsAvailable) {
+        // Fall back: fetch covers individually for this chunk
+        const results = await Promise.allSettled(
+          chunk.map(async (folderId) => ({
+            folderId,
+            url: await fetchDriveFolderCoverUrl(folderId),
+          })),
+        );
+
+        for (const result of results) {
+          if (result.status === "fulfilled" && result.value.url) {
+            coverMap[result.value.folderId] = result.value.url;
+          }
+        }
+      } else {
+        for (const file of files) {
+          const parentId = file.parents?.[0];
+          if (parentId && !coverMap[parentId] && file.id) {
+            coverMap[parentId] = createDriveThumbnailUrl(file.id);
+          }
+        }
+      }
+    }
+
+    return coverMap;
+  } catch (error) {
+    logDriveError({ context: "fetchDriveFolderCoversMap.batch", error });
+
+    // Full fallback: individual fetches for all folders
+    const results = await Promise.allSettled(
+      folderIds.map(async (folderId) => ({
+        folderId,
+        url: await fetchDriveFolderCoverUrl(folderId),
+      })),
+    );
+
+    const fallbackMap = {};
+    for (const result of results) {
+      if (result.status === "fulfilled" && result.value.url) {
+        fallbackMap[result.value.folderId] = result.value.url;
+      }
+    }
+    return fallbackMap;
+  }
 };
 
 const fetchDriveFolderImagePage = async ({
