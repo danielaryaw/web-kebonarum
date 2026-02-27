@@ -1,0 +1,19 @@
+{
+  "buildCommand": "npm run build",
+  "framework": "react",
+  "outputDirectory": "build",
+  "installCommand": "npm install",
+  "nodeVersion": "18.x",
+  "functions": {
+    "api/**/*.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
