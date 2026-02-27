@@ -1,8 +1,9 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./GalleryPage.css";
 import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
+import GalleryError from "../../components/media/GalleryError";
 import {
   getDocumentationImagesById,
   getDocumentationItemById,
@@ -50,7 +51,12 @@ const GallerySkeleton = ({ count = 8 }) => (
 const GalleryPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [item, setItem] = useState(null);
+  const location = useLocation();
+  const fallbackItem =
+    location.state?.item && location.state.item.id === id
+      ? location.state.item
+      : null;
+  const [item, setItem] = useState(fallbackItem);
   const [selectedImage, setSelectedImage] = useState(null);
   const [driveImages, setDriveImages] = useState([]);
   const [nextPageToken, setNextPageToken] = useState("");
@@ -69,13 +75,17 @@ const GalleryPage = () => {
     const loadItem = async () => {
       setIsLoadingItem(true);
 
+      if (fallbackItem) {
+        setItem(fallbackItem);
+      }
+
       try {
         const nextItem = await getDocumentationItemById(id);
         if (!isCancelled) {
           setItem(nextItem || null);
         }
       } catch (error) {
-        if (!isCancelled) {
+        if (!isCancelled && !fallbackItem) {
           setItem(null);
         }
       } finally {
@@ -90,7 +100,7 @@ const GalleryPage = () => {
     return () => {
       isCancelled = true;
     };
-  }, [id]);
+  }, [id, fallbackItem]);
 
   const galleryImages = useMemo(() => {
     if (driveImages.length > 0) {
@@ -272,14 +282,14 @@ const GalleryPage = () => {
     };
   }, [hasMoreImages, isLoadingItem, loadMoreImages]);
 
-  useEffect(() => {
-    if (!isLoadingItem && !item) {
-      navigate("/media/documentation", { replace: true });
-    }
-  }, [isLoadingItem, item, navigate]);
-
   if (!item && !isLoadingItem) {
-    return null;
+    return (
+      <>
+        <main className="gallery-page">
+          <GalleryError onBack={() => navigate("/media/documentation")} />
+        </main>
+      </>
+    );
   }
 
   const handleImageClick = (image) => {
