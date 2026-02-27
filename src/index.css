@@ -207,7 +207,7 @@ h6 {
 
 a {
   text-decoration: none;
-  color: inherit;
+  color:var(--color-text-500);
 }
 
 a:hover {

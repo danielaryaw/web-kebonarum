@@ -47,7 +47,11 @@
 
 .sejarah-section {
   padding: 4.5rem 0 5.5rem;
-  background-color: var(--color-brand-900);
+  background:
+    linear-gradient(140deg, rgba(60, 60, 60, 0.75), rgba(37, 37, 37, 0.8)),
+    url("../assets/sejarah/sejarah-bg.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .sejarah-section-inner {
@@ -58,10 +62,12 @@
 
 .sejarah-section-title {
   font-size: clamp(2.9rem, 4vw, 3.4rem);
-  text-align: left;
+  text-align: center;
   margin-bottom: 2.6rem;
   color: var(--color-white);
   line-height: 1.05;
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
 }
 
 .sejarah-timeline {
@@ -84,13 +90,13 @@
   right: 0;
   top: -1rem;
   z-index: 2;
-  font-size: clamp(4rem, 7vw, 6.2rem);
+  font-size: 8rem;
   line-height: 1;
   font-weight: 800;
   font-family: "ClashDisplay", sans-serif;
   letter-spacing: 0.03em;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.2);
   text-shadow: 0 0 0 transparent;
   pointer-events: none;
   user-select: none;
@@ -171,7 +177,7 @@
   left: 50%;
   right: auto;
   top: 40%;
-  transform: translate(-50%, -58%);
+  transform: translate(-50%, -68%);
 }
 
 .timeline-image img {
@@ -183,7 +189,7 @@
 
 .timeline-title {
   margin: 0 0 0.7rem;
-  font-size: clamp(1.8rem, 3.2vw, 2.45rem);
+  font-size: clamp(2.8rem, 3.4vw, 2.45rem);
   color: var(--color-white);
   line-height: 1.1;
   max-width: 520px;
@@ -196,13 +202,13 @@
   color: rgba(255, 255, 255, 0.88);
   line-height: 1.65;
   font-size: clamp(0.9rem, 1.35vw, 1rem);
-  max-width: 400px;
+  max-width: 420px;
   position: relative;
   z-index: 1;
 }
 
 .timeline-item:not(.timeline-item--double) .timeline-description {
-  max-width: 420px;
+  max-width: 100%;
 }
 
 @media (max-width: 1024px) {
@@ -227,7 +233,7 @@
   }
 
   .timeline-image {
-    height: 210px;
+    height: 320px;
   }
 }
 
@@ -292,7 +298,7 @@
   }
 
   .timeline-image {
-    height: 180px;
+    height: 300px;
   }
 
   .timeline-title {
@@ -360,8 +366,7 @@
   }
 
   .timeline-image {
-    height: 150px;
-    border-radius: 12px;
+    height: 250px;
   }
 
   .timeline-title {

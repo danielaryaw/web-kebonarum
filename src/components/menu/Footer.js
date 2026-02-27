@@ -28,7 +28,7 @@ const Footer = () => {
           <h3>Kontak</h3>
           <div className="contact-item">
             <span className="contact-label">Telepon:</span>
-            <a href="tel:+62812345678">+62 812 345 678</a>
+            <p>+62 812 345 678</p>
           </div>
           <div className="contact-item">
             <span className="contact-label">WhatsApp:</span>
@@ -46,7 +46,7 @@ const Footer = () => {
           <h3>Ikuti Kami</h3>
           <div className="social-links">
             <a
-              href="https://youtube.com"
+              href="https://youtube.com/@gkjkebonarummultimedia3831"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
@@ -54,7 +54,7 @@ const Footer = () => {
               <i className="fab fa-youtube"></i>
             </a>
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/gkj_kebonarum"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"
@@ -62,7 +62,7 @@ const Footer = () => {
               <i className="fab fa-instagram"></i>
             </a>
             <a
-              href="https://instagram.com"
+              href="https://instagram.com/multimedia.gkj.kebonarum"
               target="_blank"
               rel="noopener noreferrer"
               className="social-icon"

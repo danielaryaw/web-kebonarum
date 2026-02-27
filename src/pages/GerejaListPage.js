@@ -7,16 +7,7 @@ import sejarah3 from "../assets/sejarah/3.jpg";
 import sejarah4 from "../assets/sejarah/4.jpg";
 import sejarah5 from "../assets/sejarah/5.jpg";
 
-const INSTAGRAM_ACCOUNT_URL = "https://www.instagram.com/gkj_kebonarum/";
-
 const GerejaListPage = () => {
-  const defaultContact = {
-    phone: "+62 812 345 678",
-    phoneLink: "tel:+62812345678",
-    email: "gkjkebonarum@gmail.com",
-    instagram: "@gkj_kebonarum",
-  };
-
   const gerejaList = [
     {
       id: 1,
@@ -29,7 +20,12 @@ const GerejaListPage = () => {
         "17.00 WIB - Bahasa Indonesia",
       ],
       ibadahLabel: "Jadwal Ibadah",
-      contact: defaultContact,
+      contact: {
+        phone: "+62 812 345 678",
+        whatsappNumber: "+62 812 345 778",
+        email: "sumberejo@gkjkebonarum.com",
+        instagram: "@gkj_sumberejo",
+      },
       image: sejarah1,
     },
     {
@@ -39,7 +35,12 @@ const GerejaListPage = () => {
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
       schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
-      contact: defaultContact,
+      contact: {
+        phone: "+62 812 345 679",
+        whatsappNumber: "+62 812 345 779",
+        email: "krosok@gkjkebonarum.com",
+        instagram: "@gkj_krosok",
+      },
       image: sejarah2,
     },
     {
@@ -49,7 +50,12 @@ const GerejaListPage = () => {
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
       schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
-      contact: defaultContact,
+      contact: {
+        phone: "+62 812 345 680",
+        whatsappNumber: "+62 812 345 780",
+        email: "pluneng@gkjkebonarum.com",
+        instagram: "@gkj_pluneng",
+      },
       image: sejarah3,
     },
     {
@@ -59,7 +65,12 @@ const GerejaListPage = () => {
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
       schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
-      contact: defaultContact,
+      contact: {
+        phone: "+62 812 345 681",
+        whatsappNumber: "+62 812 345 781",
+        email: "ngrundul@gkjkebonarum.com",
+        instagram: "@gkj_ngrundul",
+      },
       image: sejarah4,
     },
     {
@@ -69,7 +80,12 @@ const GerejaListPage = () => {
         "Jl Pengkol, Bendogantungan II No.001/007, Bendogantungan, Sumberejo, Klaten Selatan, Klaten Regency, Central Java 57426",
       schedule: ["07.00 WIB"],
       ibadahLabel: "Jadwal Ibadah",
-      contact: defaultContact,
+      contact: {
+        phone: "+62 812 345 682",
+        whatsappNumber: "+62 812 345 782",
+        email: "prayan@gkjkebonarum.com",
+        instagram: "@gkj_prayan",
+      },
       image: sejarah5,
     },
   ];
@@ -121,10 +137,15 @@ const GerejaListPage = () => {
                       <div className="gereja-item-contact">
                         <h4 className="schedule-label">Kontak</h4>
                         <ul className="contact-list">
+                          <li>Telepon: {gereja.contact.phone}</li>
                           <li>
-                            Telp:{" "}
-                            <a href={gereja.contact.phoneLink}>
-                              {gereja.contact.phone}
+                            Whatsapp:{" "}
+                            <a
+                              href={`https://wa.me/${gereja.contact.whatsappNumber.replace(/\D/g, "")}`}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              {gereja.contact.whatsappNumber}
                             </a>
                           </li>
                           <li>
@@ -136,7 +157,7 @@ const GerejaListPage = () => {
                           <li>
                             Instagram:{" "}
                             <a
-                              href={INSTAGRAM_ACCOUNT_URL}
+                              href={`https://instagram.com/${gereja.contact.instagram.replace("@", "")}`}
                               target="_blank"
                               rel="noopener noreferrer"
                             >
