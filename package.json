@@ -2,6 +2,9 @@
   "name": "web-kebonarum",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "18.x"
+  },
   "homepage": "https://abetkalinggaw.github.io/web-kebonarum",
   "proxy": "http://localhost:5050",
   "dependencies": {
@@ -13,8 +16,8 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "framer-motion": "^12.34.3",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "^6.30.3",
     "react-scripts": "^0.0.0",
     "web-vitals": "^2.1.4"
@@ -25,7 +28,6 @@
     "nodemon": "^3.1.10"
   },
   "scripts": {
-    "postinstall": "node scripts/fix-spdy-deprecation.js",
     "start": "react-scripts start",
     "server": "node backend/server.js",
     "server:dev": "nodemon backend/server.js",

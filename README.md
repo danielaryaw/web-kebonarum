@@ -60,43 +60,6 @@ https://abetkalinggaw.github.io/web-kebonarum
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Google Drive Gallery Setup (Backend API)
-
-1. In Google Cloud Console:
-   - Enable `Google Drive API`
-   - Create an API key for backend/server usage
-   - Do **not** restrict this key by `HTTP referrers (web sites)`
-   - Use `IP addresses` restriction (server IP) or leave unrestricted during local development
-
-2. Copy environment template:
-
-```
-cp .env.example .env
-```
-
-3. In `.env`, set:
-
-```
-GOOGLE_DRIVE_API_KEY=YOUR_GOOGLE_DRIVE_API_KEY
-YOUTUBE_API_KEY=YOUR_YOUTUBE_API_KEY
-YOUTUBE_CHANNEL_ID=YOUR_YOUTUBE_CHANNEL_ID
-FRONTEND_ORIGIN=http://localhost:3000
-REACT_APP_API_BASE_URL=
-```
-
-4. In Google Drive, set each photo folder to:
-   - `Anyone with the link` → `Viewer`
-
-5. Fill each `driveFolderId` in `backend/data/documentationItems.js`
-   - Folder URL format:
-     `https://drive.google.com/drive/folders/FOLDER_ID`
-
-6. Run both frontend and backend:
-
-```
-npm run dev
-```
-
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can't go back!**
