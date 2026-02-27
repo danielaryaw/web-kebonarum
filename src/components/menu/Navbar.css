@@ -110,6 +110,24 @@
   transition: color 0.3 ease;
 }
 
+.dropdown-toggle-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 0.875rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 0;
+  padding-bottom: 0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-family: inherit;
+}
+
+.dropdown-toggle-btn:hover {
+  color: #b7bdba;
+}
+
 .dropdown-trigger {
   display: inline-flex;
   align-items: center;
@@ -395,6 +413,11 @@
     font-size: 1.1rem;
   }
 
+  .dropdown-toggle-btn {
+    font-size: 1.1rem;
+    padding-bottom: 0.3rem;
+  }
+
   /* Hamburger animation */
   .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(10px, 10px);
@@ -421,6 +444,10 @@
 
 @media (min-width: 769px) and (max-width: 1180px) {
   .navbar-menu-list a {
+    font-size: 1rem;
+  }
+
+  .dropdown-toggle-btn {
     font-size: 1rem;
   }
 

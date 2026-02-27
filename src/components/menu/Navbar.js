@@ -133,7 +133,10 @@ const Navbar = () => {
                 openDropdown === "media" ? "active" : ""
               }`}
             >
-              <a href="#" onClick={(e) => handleDropdownToggle("media", e)}>
+              <button
+                onClick={(e) => handleDropdownToggle("media", e)}
+                className="dropdown-toggle-btn"
+              >
                 <span className="dropdown-trigger">
                   Media
                   <span className="dropdown-arrow" aria-hidden="true">
@@ -154,7 +157,7 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </a>
+              </button>
               <ul className="navbar-dropdown">
                 <li>
                   <a
@@ -187,9 +190,9 @@ const Navbar = () => {
                 openDropdown === "pengumuman" ? "active" : ""
               }`}
             >
-              <a
-                href="#"
+              <button
                 onClick={(e) => handleDropdownToggle("pengumuman", e)}
+                className="dropdown-toggle-btn"
               >
                 <span className="dropdown-trigger">
                   Pengumuman
@@ -211,7 +214,7 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </a>
+              </button>
               <ul className="navbar-dropdown">
                 <li>
                   <a
@@ -238,7 +241,10 @@ const Navbar = () => {
                 openDropdown === "komisi" ? "active" : ""
               }`}
             >
-              <a href="#" onClick={(e) => handleDropdownToggle("komisi", e)}>
+              <button
+                onClick={(e) => handleDropdownToggle("komisi", e)}
+                className="dropdown-toggle-btn"
+              >
                 <span className="dropdown-trigger">
                   Komisi
                   <span className="dropdown-arrow" aria-hidden="true">
@@ -259,7 +265,7 @@ const Navbar = () => {
                     </svg>
                   </span>
                 </span>
-              </a>
+              </button>
               <ul className="navbar-dropdown">
                 <li>
                   <a
