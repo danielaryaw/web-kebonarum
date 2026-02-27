@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import "./GalleryPage.css";
 import Navbar from "../../components/menu/Navbar";
 import Footer from "../../components/menu/Footer";
@@ -51,7 +51,12 @@ const GallerySkeleton = ({ count = 8 }) => (
 const GalleryPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [item, setItem] = useState(null);
+  const location = useLocation();
+  const fallbackItem =
+    location.state?.item && location.state.item.id === id
+      ? location.state.item
+      : null;
+  const [item, setItem] = useState(fallbackItem);
   const [selectedImage, setSelectedImage] = useState(null);
   const [driveImages, setDriveImages] = useState([]);
   const [nextPageToken, setNextPageToken] = useState("");
@@ -59,6 +64,7 @@ const GalleryPage = () => {
   const [hasMoreImages, setHasMoreImages] = useState(false);
   const [isLoadingItem, setIsLoadingItem] = useState(false);
   const [isLoadingDriveImages, setIsLoadingDriveImages] = useState(false);
+  const [itemLoadWarning, setItemLoadWarning] = useState("");
   const [driveImageError, setDriveImageError] = useState("");
   const [isLoadingMoreImages, setIsLoadingMoreImages] = useState(false);
   const loadMoreRef = useRef(null);
@@ -69,6 +75,11 @@ const GalleryPage = () => {
 
     const loadItem = async () => {
       setIsLoadingItem(true);
+      setItemLoadWarning("");
+
+      if (fallbackItem) {
+        setItem(fallbackItem);
+      }
 
       try {
         const nextItem = await getDocumentationItemById(id);
@@ -77,7 +88,13 @@ const GalleryPage = () => {
         }
       } catch (error) {
         if (!isCancelled) {
-          setItem(null);
+          if (!fallbackItem) {
+            setItem(null);
+          } else {
+            setItemLoadWarning(
+              "Menampilkan data sementara. Detail dokumentasi belum berhasil dimuat.",
+            );
+          }
         }
       } finally {
         if (!isCancelled) {
@@ -91,7 +108,7 @@ const GalleryPage = () => {
     return () => {
       isCancelled = true;
     };
-  }, [id]);
+  }, [id, fallbackItem]);
 
   const galleryImages = useMemo(() => {
     if (driveImages.length > 0) {
@@ -329,6 +346,9 @@ const GalleryPage = () => {
             )}
             {displayDescription && (
               <p className="gallery-description">{displayDescription}</p>
+            )}
+            {itemLoadWarning && (
+              <p className="gallery-no-images">{itemLoadWarning}</p>
             )}
           </div>
         </section>

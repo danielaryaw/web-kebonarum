@@ -52,7 +52,7 @@ const DocumentationCard = ({ item, imageUrl, onClick }) => {
     imageUrl || item?.images?.[0] || DEFAULT_DOCUMENTATION_IMAGE;
 
   return (
-    <article className="documentation-card" onClick={() => onClick(item.id)}>
+    <article className="documentation-card" onClick={() => onClick(item)}>
       <div className="documentation-card-image">
         <img
           src={resolvedImageUrl}
@@ -262,8 +262,14 @@ const DocumentationPage = () => {
     };
   }, [hasMoreItems, loadMoreItems]);
 
-  const handleCardClick = (id) => {
-    navigate(`/media/documentation/gallery/${id}`);
+  const handleCardClick = (item) => {
+    if (!item?.id) {
+      return;
+    }
+
+    navigate(`/media/documentation/gallery/${item.id}`, {
+      state: { item },
+    });
   };
 
   return (
