@@ -11,6 +11,5 @@ dist/
 .next/
 .vercel/
 backend/
-scripts/
 .github/
 README.md
