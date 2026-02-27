@@ -8,8 +8,25 @@ const createApiUrl = (path) => {
   return path;
 };
 
+const withCacheBuster = (path) => {
+  const separator = path.includes("?") ? "&" : "?";
+  return `${path}${separator}_=${Date.now()}`;
+};
+
 const fetchJson = async (path) => {
-  const response = await fetch(createApiUrl(path));
+  const requestInit = {
+    cache: "no-store",
+    headers: {
+      "Cache-Control": "no-cache",
+      Pragma: "no-cache",
+    },
+  };
+
+  let response = await fetch(createApiUrl(path), requestInit);
+
+  if (response.status === 304) {
+    response = await fetch(createApiUrl(withCacheBuster(path)), requestInit);
+  }
 
   if (!response.ok) {
     throw new Error(`API request failed with status ${response.status}`);
