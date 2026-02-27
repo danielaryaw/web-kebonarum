@@ -1,8 +1,8 @@
-const { corsMiddleware, runMiddleware } = require("../../cors");
+const { corsMiddleware, runMiddleware } = require("../cors");
 const dotenv = require("dotenv");
 const path = require("path");
 
-dotenv.config({ path: path.resolve(__dirname, "../../../.env") });
+dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 
 const {
   hasGoogleDriveApiKey,
@@ -12,9 +12,9 @@ const {
   fetchDriveFolderCoverUrl,
   fetchDriveFolderImagePage,
   mapFolderToDocumentationItem,
-} = require("../../../backend/services/googleDriveApi");
+} = require("../../backend/services/googleDriveApi");
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   await runMiddleware(req, res, corsMiddleware);
 
   if (req.method !== "GET") {

@@ -12,6 +12,10 @@
   },
   "rewrites": [
     {
+      "source": "/api/documentation/:id/images",
+      "destination": "/api/documentation/images?id=:id"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }

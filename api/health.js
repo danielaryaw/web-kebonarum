@@ -1,6 +1,6 @@
 const { corsMiddleware, runMiddleware } = require("./cors");
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   await runMiddleware(req, res, corsMiddleware);
 
   if (req.method !== "GET") {

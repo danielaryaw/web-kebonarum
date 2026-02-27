@@ -7,13 +7,7 @@ dotenv.config({ path: path.resolve(__dirname, "../../.env") });
 const {
   hasGoogleDriveApiKey,
   logDriveError,
-  isReferrerRestrictedApiKeyError,
-  resolveFolderId,
-  fetchDriveFileById,
-  fetchDriveFolderCoverUrl,
   fetchDriveFolderImagePage,
-  fetchDriveChildFolderPage,
-  mapFolderToDocumentationItem,
 } = require("../../backend/services/googleDriveApi");
 
 module.exports = async (req, res) => {
@@ -23,16 +17,16 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const rootFolderId = resolveFolderId("");
+  const { id: folderId } = req.query;
   const requestedPageSize = Number(req.query.pageSize || 12);
   const pageSize = Number.isFinite(requestedPageSize)
     ? Math.max(1, Math.min(requestedPageSize, 50))
     : 12;
   const pageToken = String(req.query.pageToken || "");
 
-  if (!rootFolderId) {
+  if (!folderId || !hasGoogleDriveApiKey()) {
     return res.json({
-      items: [],
+      images: [],
       nextPageToken: "",
       pageSize,
       prefetchedNextPage: null,
@@ -40,76 +34,48 @@ module.exports = async (req, res) => {
   }
 
   try {
-    const currentPage = await fetchDriveChildFolderPage({
-      folderId: rootFolderId,
+    const currentPage = await fetchDriveFolderImagePage({
+      folderId,
       pageSize,
       pageToken,
     });
-
-    const items = await Promise.all(
-      currentPage.folders.map(async (folder) => {
-        try {
-          const coverUrl = await fetchDriveFolderCoverUrl(folder.id);
-          return mapFolderToDocumentationItem({
-            folder,
-            imageUrl: coverUrl || "",
-          });
-        } catch (error) {
-          return mapFolderToDocumentationItem({ folder });
-        }
-      }),
-    );
 
     let prefetchedNextPage = null;
 
     if (currentPage.nextPageToken) {
       try {
-        const nextPage = await fetchDriveChildFolderPage({
-          folderId: rootFolderId,
+        const nextPage = await fetchDriveFolderImagePage({
+          folderId,
           pageSize,
           pageToken: currentPage.nextPageToken,
         });
 
-        const prefetchedItems = await Promise.all(
-          nextPage.folders.map(async (folder) => {
-            try {
-              const coverUrl = await fetchDriveFolderCoverUrl(folder.id);
-              return mapFolderToDocumentationItem({
-                folder,
-                imageUrl: coverUrl || "",
-              });
-            } catch (error) {
-              return mapFolderToDocumentationItem({ folder });
-            }
-          }),
-        );
-
         prefetchedNextPage = {
-          items: prefetchedItems,
+          images: nextPage.images,
           nextPageToken: nextPage.nextPageToken,
         };
       } catch (prefetchError) {
         logDriveError({
-          context: "documentation.list.prefetch",
+          context: "documentation.images.prefetch",
           error: prefetchError,
         });
       }
     }
 
     return res.json({
-      items,
+      images: currentPage.images,
       nextPageToken: currentPage.nextPageToken,
       pageSize,
       prefetchedNextPage,
     });
   } catch (error) {
     logDriveError({
-      context: "documentation.list",
+      context: "documentation.images",
       error,
     });
     return res.status(502).json({
-      message: "Failed to fetch documentation folders from Google Drive",
-      items: [],
+      message: "Failed to fetch images from Google Drive",
+      images: [],
       nextPageToken: "",
       pageSize,
       prefetchedNextPage: null,
